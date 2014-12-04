@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Magento SMTP Pro Extension
 by Ashley Schroder (aschroder.com)
 
@@ -37,3 +38,9 @@ A: It's actually good advice to learn more here:  http://support.google.com/mail
 
 Q: I am getting a Subject set twice error
 A: This happens sometimes, typically if it is happening it would also be happening in core Magento. There is a Pull Request [here] (https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/pull/57) that includes a work around thanks to [Rafael Kassner] (https://github.com/kassner).
+=======
+dusgmage
+========
+
+Dusg-mage
+>>>>>>> ef6e89789916fb8a542ba4e1cc0cecfce9da890c
