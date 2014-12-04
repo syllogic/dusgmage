@@ -1,0 +1,16 @@
+[20-Dec-2013 09:57:51 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/dusgin/public_html/app/design/frontend/novaworks/highlander/template/page/html/head.phtml on line 338
+[20-Dec-2013 10:12:48 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/dusgin/public_html/app/design/frontend/novaworks/highlander/template/page/html/head.phtml on line 330
+[21-Dec-2013 08:13:02 Europe/Moscow] PHP Warning:  include_once(geoiploc.php): failed to open stream: No such file or directory in /home/dusgin/public_html/rcom2/index.php on line 28
+[21-Dec-2013 08:13:02 Europe/Moscow] PHP Warning:  include_once(): Failed opening 'geoiploc.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dusgin/public_html/rcom2/index.php on line 28
+[21-Dec-2013 08:13:02 Europe/Moscow] PHP Warning:  include_once(geoiploc.php): failed to open stream: No such file or directory in /home/dusgin/public_html/rcom2/index.php on line 28
+[21-Dec-2013 08:13:02 Europe/Moscow] PHP Warning:  include_once(): Failed opening 'geoiploc.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dusgin/public_html/rcom2/index.php on line 28
+[01-Apr-2014 09:53:44 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Varien/Object.php on line 351
+[01-Apr-2014 09:58:14 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Varien/Object.php on line 345
+[01-Apr-2014 09:59:31 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Varien/Object.php on line 351
+[01-Apr-2014 10:07:16 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Varien/Object.php on line 344
+[01-Apr-2014 10:07:49 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Zend/Db/Statement.php on line 141
+[01-Apr-2014 10:08:27 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/app/code/core/Mage/CatalogRule/Model/Observer.php on line 119
+[01-Apr-2014 10:09:51 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Zend/Db/Adapter/Abstract.php on line 1024
+[01-Apr-2014 10:11:12 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Varien/Image/Adapter/Gd2.php on line 336
+[01-Apr-2014 10:11:21 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/dusgin/public_html/lib/Varien/Event.php on line 54
+[01-Apr-2014 12:35:31 UTC] PHP Fatal error:  Call to undefined function setPageSize() in /home/dusgin/public_html/app/design/frontend/novaworks/highlander/template/catalog/product/home.phtml on line 49

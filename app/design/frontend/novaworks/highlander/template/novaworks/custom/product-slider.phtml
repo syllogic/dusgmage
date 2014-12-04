@@ -1,0 +1,130 @@
+<?php
+$ajax_cart		 		= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_cart', $storeId); 
+$image_product_hover 	= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/image_product_hover', $storeId);
+$quick_view	 			= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_quickview', $storeId);  
+$thumb_width =  Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/standard_image_width', $storeId);
+$thumb_height = Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/standard_image_height', $storeId);
+$_products = $this->getProductList();
+?>
+<div class="product-slider-shortcode">
+				<?php if($this->getBlockTitle()):?><div class="home-list-title"><h3 class="title"><?php echo $this->getBlockTitle() ?></h3></div><?php endif;?>
+<div class="<?php echo $this->getBlockID()?>">
+	<div class="nav-wrapper"></div>
+	<div class="slider-items slider-width-col5">	
+		 <ul class="slides products-grid">
+		 	<?php $i=0; foreach ($_products->getItems() as $_product): ?>
+		 	<?php $_simple = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($_product->getId()); ?>
+		 	<?php if (empty($_simple)): ?>
+		       	<li class="item">
+					<div class="nova-product-images"> 
+						<?php include('labels.phtml')  ?> 
+						<?php if($quick_view): ?>
+						<div class="quickview-box">
+							<a class="quickview_small" href="<?php echo $this->getUrl('ajax/index/quickview',array('product_id'=>$_product->getId()));?>" data-id="<?php echo $_product->getId()?>">Quick View</a> 
+						</div>
+						<?php endif;?>
+			            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+			                          <?php 
+			                if($image_product_hover) { ?>
+			                <div class="front margin-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($thumb_width,$thumb_height); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></div>
+			                <?php
+			                 $_gallery = Mage::getModel('catalog/product') -> load($_product -> getId()) -> getMediaGalleryImages();
+			                 foreach ($_gallery as $_image ):
+			                 ?>
+			                 <div class="product-img-additional back margin-image">
+			                 <img src="<?php echo $this -> helper('catalog/image') -> init($_product, 'thumbnail', $_image -> getFile()) -> resize($thumb_width, $thumb_height);?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
+			                 </div>
+			                 <?php
+									break;
+									endforeach;
+							?>
+							<?php
+							}else{
+							?>
+							 <div class="margin-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($thumb_width,$thumb_height); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+							 </div>
+							<?php	
+							}
+							?>	
+							<span class="theHoverBorder"></span>		               
+			        	</a>
+						
+					</div>
+		        	<h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h3>
+		        	<div class="price-product-box">
+		            	<?php echo Mage_Catalog_Block_Product::getPriceHtml($_product, true) ?>
+			            <div class="descriptions-hidden">		
+							<div class="quick-act" id="quick-act-<?php echo $_product->getId()?>">            
+								<?php if($ajax_cart):?> 	
+								<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ): ?>
+							 	<a rel="tooltip" class="add_to_cart_small" onclick="ajaxcart(' <?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>','<?php echo $_product->getId()?>');"><i class="icon-basket-1"></i></a> 
+								<?php else:?>		
+							  	<a class="ajaxcart_colorbox add_to_cart_small" href="<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>"><i class="icon-basket-1"></i></a> 
+							 	<?php endif; ?> 
+								<?php else:?>
+							 	<a rel="tooltip" class="add_to_cart_small" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>');"><i class="icon-basket-1"></i></a> 
+								<?php endif; ?> 
+								<?php if ($this->helper('wishlist')->isAllow()) : ?>
+							 	<a title="Wishlist" class="add_to_wishlist_small" href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" data-id="<?php echo $_product->getId()?>"><i class="icon-wishlist"></i></a> 
+								<?php endif; ?> 
+								<?php $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product) ?>
+							 	<?php if($_compareUrl): ?>
+							 	<a title="Compare" class="add_to_compare_small" href="<?php echo $_compareUrl ?>" data-id="<?php echo $_product->getId()?>"><i class="icon-chart-bar-1"></i></a> 
+								<?php endif; ?>
+							</div>
+						</div>
+		            </div>	
+		            <div class="rating-product-box">
+			            <?php
+	                    $_reviews = Mage::getModel('review/review')->getResourceCollection();              
+	                      $_reviews->addStoreFilter( Mage::app()->getStore()->getId() )  
+	                                ->addEntityFilter('product', $_product->getId())
+	                              ->addStatusFilter( Mage_Review_Model_Review::STATUS_APPROVED )  
+	                              ->setDateOrder()  
+	                              ->addRateVotes(); 
+                    
+                            $avg = 0; 
+                            $ratings = array(); 
+                            if (count($_reviews) > 0){
+                            foreach ($_reviews->getItems() as $_review): ?>
+                            <?php foreach( $_review->getRatingVotes() as $_vote ): ?>
+                                    <?php $ratings[] = $_vote->getPercent();   ?>
+                                <?php endforeach; ?>
+                            <?php endforeach;   
+                            $avg = array_sum($ratings)/count($ratings); 
+                            ?> 
+                     
+                    <div class="rating-box">  
+                      <div class="rating" style="width: <?php echo ceil($avg) ; ?>%;"></div>  
+                    </div>					
+                    <?php }?>
+                    </div>
+		            <div class="clear"></div>	
+		            	
+		        </li>
+		        <?php endif;?>
+		    	<?php endforeach; ?>
+		 </ul>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(function($) {
+		$('.<?php echo $this->getBlockID()?> .slider-items').flexslider({
+			namespace: "nova-slider-",
+			animation: "slide",
+			easing: "easeInQuart",
+			animationLoop: false,
+			slideshow: false,
+			animationSpeed: 400,						
+			pauseOnHover: true,
+			controlNav: false,
+			itemWidth:291,
+			controlsContainer: ".<?php echo $this->getBlockID()?> .nav-wrapper",
+			prevText: "<div><i class=\"icon-left-open-big\"></i></div>",           //String: Set the text for the "previous" directionNav item
+			nextText: "<div><i class=\"icon-right-open-big\"></i></div>"
+		});
+	});
+//]]>
+</script>

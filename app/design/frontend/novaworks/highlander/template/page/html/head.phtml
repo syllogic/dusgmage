@@ -1,0 +1,422 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensourcez.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+require_once('nova-framework/google_fonts.php');
+$is_home =false;
+$storeId = Mage::app()->getStore()->getStoreId();
+$storecode = Mage::app()->getStore()->getStoreCode();
+$pageLayout=$this->getLayout()->getBlock('root')->getTemplate();
+$page = Mage::app()->getFrontController()->getRequest()->getRouteName();
+
+if ($page == 'cms'):
+    $is_home=(Mage::getSingleton('cms/page')->getIdentifier()== Mage::getStoreConfig('web/default/cms_home_page')) ? true :false;
+endif;
+//var_dump($is_home);
+
+$heading_font_url = str_replace(' ', '+',Mage::getStoreConfig('themeoptions_theming/theme_general/heading_font', $storeId));
+$preset = Mage::getStoreConfig('themeoptions_theming/theme_body/presets', $storeId);
+$media_path	   = Mage::getBaseUrl('media') . 'theming/';
+$basepath = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+if($preset==1) {
+	$background_image 		= Mage::getStoreConfig('themeoptions_theming/theme_body/l_background_image', $storeId);
+	$background_repeat 		= Mage::getStoreConfig('themeoptions_theming/theme_body/l_background_repeat', $storeId);
+	$background_attachment 	= Mage::getStoreConfig('themeoptions_theming/theme_body/l_background_attachment', $storeId);
+	$background_postition 	= Mage::getStoreConfig('themeoptions_theming/theme_body/l_background_postition', $storeId);
+}else{
+	$background_image 		= Mage::getStoreConfig('themeoptions_theming/theme_body/d_background_image', $storeId);
+	$background_repeat 		= Mage::getStoreConfig('themeoptions_theming/theme_body/d_background_repeat', $storeId);
+	$background_attachment 	= Mage::getStoreConfig('themeoptions_theming/theme_body/d_background_attachment', $storeId);
+	$background_postition 	= Mage::getStoreConfig('themeoptions_theming/theme_body/d_background_postition', $storeId);
+}
+$responsive_layoyut					=	Mage::getStoreConfig('themeoptions_general/general_options/responsive_layout', $storeId);
+$footer_background_color 		= Mage::getStoreConfig('themeoptions_theming/theme_footer/footer_background_color', $storeId);
+$footer_background_image 		= Mage::getStoreConfig('themeoptions_theming/theme_footer/footer_background_image', $storeId);
+$footer_background_repeat 		= Mage::getStoreConfig('themeoptions_theming/theme_footer/footer_background_repeat', $storeId);
+$footer_background_attachment 	= Mage::getStoreConfig('themeoptions_theming/theme_footer/footer_background_attachment', $storeId);
+$footer_background_postition 	= Mage::getStoreConfig('themeoptions_theming/theme_footer/footer_background_postition', $storeId);
+
+
+
+//function GoogleFont($name) {
+//			if($name) {
+//            	echo '<link rel="stylesheet"  href="http://fonts.googleapis.com/css?family=' . $name . '" type="text/css" media="screen" />';
+//            }
+//}
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<?php if( $storeId!=2) :?>
+
+	 <?php if($is_home): ?>
+		<title><?php echo "Buy organic t-shirts, trousers, yoga pants, yoga wear online in India | DoUSpeakGreen.in";?></title>
+	<?php else: ?>
+	        <title><?php echo $this->getTitle()?></title>
+	 <?php endif; ?>       
+
+
+<?php else:?>
+        <!-- Modified for SEO on 17 June 2014 -->
+        <?php if($is_home): ?>
+		<title><?php echo "Buy organic t-shirts, trousers, yoga pants, yoga wear online | DoUSpeakGreen.com";?></title>
+	<?php else: ?>
+	        <title><?php echo $this->getTitle()?></title>
+	 <?php endif; ?>       
+
+<?php endif; ?>
+
+<?php if($responsive_layoyut):?>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<?php endif; ?>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<?php if( $storeId!=2 ):
+$meta_decription="Douspeakgreen.in is an online store selling ethical,fashionable and authentic eco-clothing at affordable prices.";
+$meta_keywords ="organic clothes india, organic t shirts, eco frienldy clothing,bamboo clothing, chemical free clothing, yoga pants, yoga wear, yoga tops,organic pants.";
+?>	
+<?php if($is_home): ?>
+		<meta name="description" content="<?php echo htmlspecialchars($meta_decription) ?>" />
+	        <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords) ?>" />
+	<?php else: ?>
+	       <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+	       <meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+	 <?php endif; ?>   
+<?php
+       else:
+       $meta_decription="Douspeakgreen.com stands is an online store selling ethical, fashionable and authentic eco-clothing at affordable prices.";
+       $meta_keywords =" organic clothes, organic t shirts, eco frienldy clothing, bamboo clothing, chemical free clothing, yoga pants, yoga wear, yoga tops,organic pants.";
+?>  <!-- Modified for SEO on 17 June 2014 -->
+	
+	<?php if($is_home): ?>
+		<meta name="description" content="<?php echo htmlspecialchars($meta_decription) ?>" />
+	        <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords) ?>" />
+	<?php else: ?>
+	       <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+	       <meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+	 <?php endif; ?>      
+<?php
+       endif;
+ ?>
+
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<meta name="wot-verification" content="09de494ab6c140c4cb40"/> 
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>"/>
+
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>"/>
+<!--[if IE 7]>
+
+<p>DoUSpeakGreen works best with Chrome, FireFox and IE 10 Browsers. <br>
+Please consider using the recommended browswers for best viewing experience</p>
+
+<script type="text/javascript">
+document.execCommand('Stop');
+</script>
+<![endif]-->
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<!--[if IE 8]>
+
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/ie8.css')?>" media="all" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/styles-ie.css')?>" media="all" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/styles-ie8.css')?>" media="all" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/styles-ieeight.css')?>" media="all" />
+
+
+<![endif]-->
+
+<!--[if IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+
+<![endif]-->
+
+<?php google_fonts(); ?>
+
+<?php echo $this->getCssJsHtml() ?>
+<?php if($background_image):?>
+<style>
+.wrapper {
+	background-image: url(<?php echo $media_path.$background_image ?>);
+	background-repeat: <?php echo $background_repeat;?>;
+	background-attachment: <?php echo $background_attachment;?>;
+	background-position: <?php echo $background_postition;?>;
+}
+
+</style>
+<?php endif;?>
+<?php if($footer_background_image):?>
+<style>
+.footer-bg {
+	background-color:<?php echo $footer_background_color;?>;
+	background-image: url(<?php echo $media_path.$footer_background_image ?>);
+	background-repeat: <?php echo $footer_background_repeat;?>;
+	background-attachment: <?php echo $footer_background_attachment;?>;
+	background-position: <?php echo $footer_background_postition;?>;
+}
+</style>
+<?php endif;?>
+
+<?php
+$theme_layout 		= Mage::getStoreConfig('themeoptions_theming/design_layout/theme_layout', $storeId);
+if($theme_layout==2):
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/boxed-layout.css')?>" media="all" />
+<?php endif; ?>
+<?php if($responsive_layoyut):?>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/responsive.css')?>" media="all" />
+<?php endif; ?>
+
+<script>
+var skinUrl='<?php echo $this->getSkinUrl('')?>';
+</script>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+<?php if($pageLayout!='page/empty.phtml'):?>
+  <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS);?>novaworks/jquery.isotope.js"></script>
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/ie8.css')?>" media="all" />
+
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<?php
+if (Mage::getStoreConfig('imagezoomconfig/general/zoomclound_enable')) {
+$css = '
+					<style type="text/css">
+						.cloud-zoom-lens {
+							border: '.Mage::getStoreConfig('imagezoomconfig/imagezoom_style_css/lens_border').'px solid '.Mage::getStoreConfig('imagezoomconfig/imagezoom_style_css/lens_border_color').';
+							margin:-'.Mage::getStoreConfig('imagezoomconfig/imagezoom_style_css/lens_border').'px;	/* Set this to minus the border thickness. */
+							background-color: '.Mage::getStoreConfig('imagezoomconfig/imagezoom_style_css/lens_background_color').';
+						}
+						.cloud-zoom-big {
+							border: '.Mage::getStoreConfig('imagezoomconfig/imagezoom_style_css/zoom_window_border').'px solid '.Mage::getStoreConfig('imagezoomconfig/imagezoom_style_css/zoom_window_border_color').';
+						}
+					</style>';
+echo $css;
+}
+?>
+
+<?php endif; ?>
+<script>
+	 // DOM ready
+	 jQuery(function() {
+          jQuery(".dropdown-phone").change(function() {
+          window.location = jQuery(this).find("option:selected").val();
+      });
+
+	 });
+	</script>
+<?php
+$ajax_cart			= intval(Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_cart', $storeId));
+$ajax_compare		= intval(Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_compare', $storeId));
+$ajax_wishlist		= intval(Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_wishlist', $storeId));
+?>
+
+
+<script src="<?php echo $this->getSkinUrl('js/jquery.cycle.all.js')?>"></script>
+
+<link type='text/css' href="<?php echo $this->getSkinUrl('css/basic.css')?>" rel='stylesheet' media='screen' />
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.simplemodal.js')?>"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/modernizr-2.6.2.js')?>"></script>
+
+<?php if(Mage::registry('current_product')) : ?>
+
+<script type="text/javascript" src="<?php echo $basepath?>highslide/highslide-with-html.js"></script>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $basepath?>highslide/highslide.css" />
+
+<?php endif;?>
+<script type="text/javascript">
+jQuery(function() {
+<?php if($ajax_cart):?>
+	  jQuery('.mini-cart .remove-item').live('click', function () {
+    	deletecart(jQuery(this).attr('href'));
+    return false;
+	});
+<?php endif; ?>
+<?php if($ajax_compare):?>
+    jQuery('.add_to_compare_small').live('click', function () {
+    	ajaxcompare(jQuery(this).attr('href'),jQuery(this).attr('data-id'));
+    return false;
+	});
+    jQuery('.btn-compare-remove').live('click', function () {
+    	removeCompare(jQuery(this).attr('href'));
+    return false;
+	});
+    jQuery('.btn-clear-all-compare').live('click', function () {
+    	clearCompare(jQuery(this).attr('href'));
+    return false;
+	});
+<?php endif; ?>
+<?php if($ajax_wishlist &&  $this->helper('customer')->isLoggedIn()):?>
+    jQuery('.add_to_wishlist_small').live('click', function () {
+    	ajaxwishlist(jQuery(this).attr('href'),jQuery(this).attr('data-id'));
+    return false;
+	});
+<?php endif; ?>
+});
+jQuery(window).load(function() {
+
+jQuery('#fb_iframe').html('<iframe style="border: #41C1CD; overflow: hidden; width: 284px; height: 230px; margin-bottom:20px; background:#fff;" src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FDoUSpeakGreen&amp;width=284&amp;height=210&amp;show_faces=true&amp;stream=false&amp;border_color=#F6F6F6&amp;header=true&amp;appId=443765669003481&amp;color_scheme=dark" frameborder="0" scrolling="yes" width="320" height="240"></iframe>');
+
+if (!jQuery('html').hasClass('no-touch')) {
+ //Execute code only on a touch screen device
+		jQuery(document).bind('touchstart', function(e) {
+
+                  jQuery(".descriptions-hidden").hide();
+                  jQuery('#wrap .mousetrap').attr('style', 'display:none !important');
+                  e.stopPropagation();
+		});
+	
+}
+else{
+
+		var deviceAgent = navigator.userAgent.toLowerCase();
+		var isTouchDevice = Modernizr.touch ||(deviceAgent.match(/(iphone|ipod|ipad)/) ||
+				    deviceAgent.match(/(android)/)  ||deviceAgent.match(/(iemobile)/) ||deviceAgent.match(/iphone/i) ||
+                                    deviceAgent.match(/ipad/i) ||deviceAgent.match(/ipod/i) ||deviceAgent.match(/blackberry/i) ||
+                                    deviceAgent.match(/bada/i));
+		if (isTouchDevice) {
+            		 jQuery('#wrap .mousetrap').attr('style', 'display:none !important');
+    		} 
+    		else {
+            		 jQuery(".item").hover(function() {
+				 jQuery(".descriptions-hidden", this).transition({"display":"block"});
+	                  }, function() {
+		                 jQuery(".descriptions-hidden", this).transition({"display":"none"});
+	                  });
+
+                     }
+}
+});
+jQuery( document ).ready(function() {
+
+<?php if($storeId == 2):?>
+   jQuery('#show_base').hide();
+   jQuery('#show_usd').show();
+  <?php else: ?>
+     jQuery('#show_base').show();
+     jQuery('#show_usd').hide();
+   <?php endif;?>
+var storeID = '<?php echo $storeId;?>';
+
+  jQuery('#block_our_blogs').cycle('fade');
+if(storeID == 3){
+var additional="index.php/";
+}
+else{
+var additional="";
+}
+var basepath =  "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>";
+//var path = window.location.protocol + "//" + window.location.host + "/"+additional;
+var path = basepath+additional;
+var theBrand =path+"the-brand.html";
+var aboutUs =path+"the-brand/about-us.html";
+var whyOrganic =path+"the-brand/why-organic.html";
+var bobClothing =path+"the-brand/benefits-of-bamboo-clothing.html";
+var video =path+"videos.html";
+var brandVideo=path+"videos/brand-videos.html";
+var omyogaTop1=path+"videos/om-yoga-top.html";
+var etNow=path+"videos/et-now.html";
+var omyogaTop2=path+"videos/om-yoga-top-1.html";
+var cottonFarming=path+"videos/cotton-farming.html";
+var foundersSpeech=path+"videos/founders-speech.html";
+var veronikaVideo=path+"videos/veronika-video.html";
+var ultrasoft_organic_cotton_leggings_by_dusgVideo=path+"videos/ultrasoft-organic-cotton-leggings-by-dusg.html";
+var organic_cotton_farmingVideo=path+"videos/organic-cotton-farming-by-dusg.html";
+
+var tirupur_factory_video=path+"videos/tirupur-factory-video.html";
+
+var ourCsr =path+"the-brand/our-csr.html";
+var ourStores =path+"the-brand/our-stores.html";
+var imageGallery =path+"the-brand/image-gallery.html";
+var lookBook =path+"the-brand/look-book.html";
+var lifecycle=path+"the-brand/t-shirt-lifecycle.html";
+var catalog_2014_15=path+"the-brand/catalog-2014-15.html";
+var media=path+"the-brand/media-new.html";
+var new_catalog_url ="<?php echo $this->getSkinUrl('pdf/DUSG-CATALOG-2014-15.pdf')?>";
+var contact_us_header = path+'contact-us.html';
+
+jQuery("a[href='"+brandVideo+"']").attr('target', '_blank');
+jQuery("a[href='"+omyogaTop1+"']").attr('target', '_blank');
+jQuery("a[href='"+etNow+"']").attr('target', '_blank');
+jQuery("a[href='"+cottonFarming+"']").attr('target', '_blank');
+jQuery("a[href='"+foundersSpeech+"']").attr('target', '_blank');
+jQuery("a[href='"+veronikaVideo+"']").attr('target', '_blank');
+jQuery("a[href='"+ultrasoft_organic_cotton_leggings_by_dusgVideo+"']").attr('target', '_blank');
+jQuery("a[href='"+organic_cotton_farmingVideo+"']").attr('target', '_blank');
+
+jQuery("a[href='"+tirupur_factory_video+"']").attr('target', '_blank');
+
+jQuery("a[href='"+lookBook+"']").attr('target', '_blank');
+
+jQuery("a[href='"+theBrand+"']").attr('href', 'javascript:void(0);');
+jQuery("a[href='"+aboutUs+"']").attr('href', path+'about-us');
+jQuery("a[href='"+whyOrganic+"']").attr('href', path+'organic-cotton');
+jQuery("a[href='"+bobClothing+"']").attr('href', path+'bamboo-clothing');
+jQuery("a[href='"+video+"']").attr('href', 'javascript:void(0);');
+jQuery("a[href='"+brandVideo+"']").attr('href', 'http://www.youtube.com/channel/UCtvm76Sbi3h8yIyPfduHxUw');
+jQuery("a[href='"+omyogaTop1+"']").attr('href', 'http://www.youtube.com/watch?v=tsRxBoNPj1U');
+jQuery("a[href='"+etNow+"']").attr('href', 'http://www.youtube.com/watch?v=F6Rc-nWqVHA');
+jQuery("a[href='"+cottonFarming+"']").attr('href', 'http://www.youtube.com/watch?v=vEmBLKyDMeo');
+jQuery("a[href='"+foundersSpeech+"']").attr('href', 'http://www.youtube.com/watch?v=nHzX8yGQ1u4');
+jQuery("a[href='"+veronikaVideo+"']").attr('href', 'http://www.youtube.com/watch?v=2FMNdgZuhoc');jQuery("a[href='"+ultrasoft_organic_cotton_leggings_by_dusgVideo+"']").attr('href', 'http://youtu.be/wh0YbFgfaXY2');
+jQuery("a[href='"+organic_cotton_farmingVideo+"']").attr('href', 'http://youtu.be/XUJtdk_e1Jo');
+
+jQuery("a[href='"+tirupur_factory_video+"']").attr('href', 'https://www.youtube.com/watch?v=Qx05gZ4bw_k');
+
+jQuery("a[href='"+ourCsr+"']").attr('href', path+'our-csr');
+jQuery("a[href='"+ourStores+"']").attr('href', path+'our-stores');
+jQuery("a[href='"+imageGallery+"']").attr('href', path+'image-gallery');
+jQuery("a[href='"+lookBook+"']").attr('href', 'http://fusionclothing.com/dusg-intl-ebrochure-2012/dusg-intl-ebrochure.html');
+jQuery("a[href='"+lifecycle+"']").attr('href', path+'t-shirt-lifecycle');
+jQuery("a[href='"+media+"']").attr('href', path+'media-new');
+jQuery("a[href='"+catalog_2014_15+"']").attr('target', '_blank');
+jQuery("a[href='"+catalog_2014_15+"']").attr('href',new_catalog_url);
+if(storeID == 2){
+
+jQuery("a[href='"+contact_us_header+"']").attr('href', path+'contact-us-intl');
+var contact_us_footer = path+'contact-us/';
+jQuery("a[href='"+contact_us_footer+"']").attr('href', path+'contact-us-intl');
+}
+else
+{
+jQuery("a[href='"+contact_us_header+"']").attr('href', path+'contact-us');
+}
+
+});
+</script>
+<script type="text/javascript">
+<!--
+document.write(unescape("%3Cscript id='omniaff_o789258' src='" + (("https:" == document.location.protocol) ? "https://" : "http://") + "dusg.myomnistar.com/track.js' type='text/javascript'%3E%3C/script%3E"));
+//
+-->
+</script>

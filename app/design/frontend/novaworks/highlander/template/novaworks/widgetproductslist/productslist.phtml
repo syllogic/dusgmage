@@ -1,0 +1,68 @@
+<?php
+$_productCollection=$this->getProductCollection();
+$_helper = $this->helper('catalog/output');
+if(count($_productCollection)>0){
+?>
+<div class="mt_productslist container">
+    <div class="block-container">
+        <div class="row show-grid">
+            <?php if($this->getWidgetTitle()){?>
+                <div class="mt-block-title col-lg-12">
+                    <div class="block-title">
+						<div class="mt-product-title">
+							<span>
+								<span>
+									  <?php echo $this->getWidgetTitle();?>
+								</span>
+							</span>
+						</div>
+                    </div>
+                </div>
+            <?php }?>
+        </div>
+    </div>
+    <div id="mtcontainer" class="container-custom productslist-container">
+        <?php $_collectionSize = $_productCollection->count() ?>
+        <?php $i = 0; foreach ($_productCollection as $_product): ?>
+        <?php $n = $i%$columnCount;?>
+        <?php if ($i++%$columnCount==0): ?>
+        <?php
+            $oType = false;
+            $product = Mage::getModel('catalog/product');
+            $product->load($_product->getId());
+            print_r($_product->getTypeInstance(true)->hasRequiredOptions($_product));
+            foreach ($product->getOptions() as $o) {
+                $optionType = $o->getType();
+                if ($optionType == 'file') {
+                    $oType = true;
+                }
+            }
+        ?>
+        <?php endif ?>
+   
+                                    <?php if($_product->isSaleable()): ?>
+                                        <?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) || $oType == true ) { ?>
+                                              <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart <?php if($oType == true) echo 'option-file';?>" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+											  <?php } else { ?>
+											  <?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) : ?>
+												<a style="display: none;" href='<?php echo $this->getUrl('ajaxcart/index/options',array('product_id'=>$_product->getId()));?>' class='options-cart' id='options-cart-<?php echo $_product->getId()?>'><?php echo $this->__('Option cart')?></a>
+											   <?php endif; ?>
+											   <p>
+												  <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart show-options" data-id="<?php echo $_product->getId(); ?>"
+												   <?php if (!Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) { ?>
+													onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"
+												   <?php }?> data-submit='<?php echo $this->getAddToCartUrl($_product) ?>'><span><span><?php echo $this->__('Add to Cart') ?></span></span>
+												  </button>
+												 </p>
+									  <?php }  ?>  
+                                    <?php else: ?>
+                                        <p class="availability out-of-stock pull-left" title="<?php echo $this->__('Out of stock') ?>">
+                                            <span class="out"><?php echo $this->__('Out of stock') ?></span>
+                                        </p>
+                                    <?php endif; ?>
+                           
+
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php }?>

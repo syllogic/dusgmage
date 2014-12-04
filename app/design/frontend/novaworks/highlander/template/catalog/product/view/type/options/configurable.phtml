@@ -1,0 +1,133 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+$_product    = $this->getProduct();
+$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+//Change made by Venkat
+
+$Sizechart= $_product->getAttributeText('sizechart');
+?>
+<?php if ($_product->isSaleable() && count($_attributes)):?>
+    <dl>
+    <?php foreach($_attributes as $_attribute): ?>
+        <dt><label class="required"><em>*</em><?php echo $_attribute->getLabel() ?></label></dt>
+        <dd<?php if ($_attribute->decoratedIsLast){?> class="last"<?php }?>>
+            <div class="input-box">
+                <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
+                    <option><?php echo $this->__('Choose an Option...') ?></option>
+                  </select>
+              </div>
+        </dd>
+    <?php endforeach;
+ switch($Sizechart) {
+ case "B-05":
+   $path=$this->getSkinUrl('images/sizechart/b05-sizechart.jpg');
+   break;
+ case "Men's":
+   $path=$this->getSkinUrl('images/sizechart/mens-sizechart.jpg');
+   break;
+ case "Women's":
+   $path=$this->getSkinUrl('images/sizechart/womens-sizechart.jpg');
+   break;
+ case "Kids":
+   $path=$this->getSkinUrl('images/sizechart/kids-sizechart.jpg');
+   break;
+  case "Unisex":
+   $path=$this->getSkinUrl('images/sizechart/unisex-sizechart.png');
+   break;   
+ case "B-01":
+   $path=$this->getSkinUrl('images/sizechart/b01-sizechart.jpg');
+   break;
+ case "B-02":
+   $path=$this->getSkinUrl('images/sizechart/b02-sizechart.jpg');
+   break;
+ case "B-03":
+   $path=$this->getSkinUrl('images/sizechart/b03-sizechart.jpg');
+   break;
+ case "B-04":
+   $path=$this->getSkinUrl('images/sizechart/b04-sizechart.jpg');
+   break;
+ default :
+  $path="";
+  break;
+}
+?>
+<?php if($path!=""):?>
+      <dt class="quick_view_size_chart"><label style="padding-right:11px"><?php echo "Size Chart"?> </label>
+           <a href="<?php echo $path; ?>" rel="lightbox1[mygroup]" >
+              <img src="<?php echo $this->getSkinUrl('images/size.png');?>" >
+
+           </a>
+           <span style="display:none">
+           <a href="<?php echo $path; ?>" rel="lightbox[mygroup]">
+           <img  src="<?php echo $path; ?>">
+           </a>
+           </span>
+      </dt>
+ <?php endif;?>
+    </dl>
+    <script type="text/javascript">
+
+        var str="";
+        var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+        var coloroptions =spConfig.config.attributes[92].options; 
+        var sizeoptions =spConfig.config.attributes[134].options; 
+        //alert("Total Colors : "+coloroptions.length+" Total Sizes : "+sizeoptions.length);
+        if(coloroptions.length == 1){
+            spConfig.settings[1].disabled=false;
+            for(i=0;i<sizeoptions.length;i++){
+                str=str+"<option value='"+sizeoptions[i].id+"' price='"+sizeoptions[i].price+"'>"+sizeoptions[i].label+"</option>";
+            }
+            jQuery("#attribute134").append(str);
+            spConfig.settings[0].selectedIndex =1;
+            spConfig.settings[1].selectedIndex =0;
+        }
+
+    </script>
+    <script type="text/javascript">
+/*        jQuery(document).ready(function() {
+	  var colorLength = jQuery("#attribute92")[0].length;
+	  alert (spConfig);
+
+	  if (colorLength == 2) {
+	    jQuery("#attribute92 option")[1].selected = true;
+	    jQuery("#attribute92 option").change();
+	  }
+
+	  jQuery("#attribute92").change(
+	    function() {
+	      var sizeLength = jQuery("#attribute134")[0].length;
+	      if (sizeLength == 2) {
+		jQuery("#attribute134 option")[1].selected = true;
+	      }
+	    }
+	  )
+	  }); */
+    </script>
+
+<?php endif;?>

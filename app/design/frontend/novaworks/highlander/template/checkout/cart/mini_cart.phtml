@@ -1,0 +1,83 @@
+<?php
+ $storeId = Mage::app()->getStore()->getStoreId();
+ $custom_header					=	Mage::getStoreConfig('themeoptions_general/general_options/custom_header', $storeId);
+ $header_get = $_GET['header'];
+ if($header_get) {
+	 $custom_header = $header_get;
+ }else{
+ 	$custom_header					=	Mage::getStoreConfig('themeoptions_general/general_options/custom_header', $storeId);
+ }
+?>
+<div class="minicart">
+    <?php $_cartQty = $this->getSummaryCount(); ?>
+    	<div class="shoppingcart"> 
+		<?php  if($custom_header == '') :?>
+
+    		<div class="cart-icon-top"><?php if($_cartQty > 0):?><span class="syllogic_total_qty"><?php echo $_cartQty;?></span><?php endif;?><i class="icon-basket"></i></div>   
+			<a class="mini-cart-title" href="<?php echo $this->getUrl('checkout/cart') ?>" title="<?php echo $this->__('View contents of your shopping cart') ?>">
+				<span><?php echo $this->__('Shopping Cart'); ?></span>       
+				<span class="cart_circle<?php if($_cartQty): echo " active"; endif;?>">
+				<?php if($_cartQty): echo " ( ".$_cartQty." ) item "; endif;?></span>
+			</a>
+		<?php elseif($custom_header == 'custom-header-1') : ?>
+    		
+    		<div class="cart-icon-top">
+    			<div class="view-shopping-cart"><a class="mini-cart-title" href="<?php echo $this->getUrl('checkout/cart') ?>" title="<?php echo $this->__('View contents of your shopping cart') ?>"></a></div>
+    			<div class="shoppingcart"><?php echo $this->__('Shopping Cart'); ?></div> 
+                <div class="amount"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()); ?> <?php if($_cartQty > 0):?><span class="syllogic_total_qty"><?php echo $_cartQty;?></span><?php endif;?><i class="icon-down-open"></i></div>
+    			</div>
+    			
+    	<?php elseif($custom_header == 'custom-header-2') :?>
+
+    		<div class="cart-icon-top"><i class="iconshop"></i></div>   
+			<a class="mini-cart-title" href="<?php echo $this->getUrl('checkout/cart') ?>" title="<?php echo $this->__('View contents of your shopping cart') ?>">
+				<span><?php echo $this->__('Shopping Cart'); ?></span>       
+				<span class="cart_circle<?php if($_cartQty): echo " active"; endif;?>">
+				<?php if($_cartQty): echo " ( ".$_cartQty." ) item "; endif;?></span>
+			</a> 
+    	<?php elseif($custom_header == 'custom-header-3') : ?>
+    		
+    		<div class="carticon-top">
+    			<a class="minicart-title" href="<?php echo $this->getUrl('checkout/cart') ?>" title="<?php echo $this->__('View contents of your shopping cart') ?>"></a>
+    			<span><?php echo $this->__(''); ?><?php if($_cartQty > 0):?><span class="syllogictotal_qty"><?php echo $_cartQty;?></span><?php else:?> <span class="syllogictotal_qty">0</span><?php endif;?><i class="icon-shop"></i></span><span class="cartitems">cart<br> Items</span> 
+                
+    			</div>   			
+		<?php endif;?>
+		</div>  
+    <?php $_items = $this->getRecentItems();
+
+ ?>
+    <?php if(count($_items)): ?>
+	
+    	<div class="block-content">
+    		<div class="block-content-inner" >
+	            <p class="block-subtitle"><?php echo $this->__('') ?></p>
+	            <ol id="cart-sidebar" class="mini-products-list">
+                     
+	            <?php foreach($_items as $_item): ?>
+	                <?php echo $_item.$this->getItemHtml($_item) ?>
+	            <?php endforeach; ?>
+					<div class="cotton2"><img src="<?php echo $this->getSkinUrl("images/Miss-cotton2.png")?>" / ></div>					
+	            </ol>     
+				
+	            <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+	            
+	            <div class="actions">
+	            	<button type="button" title="<?php echo $this->__('View contents of your shopping cart') ?>" class="button btn-inline button-shopcart" onclick="setLocation('<?php echo $this->getUrl('checkout/cart') ?>')"><span><span><?php echo $this->__('View cart') ?></span></span></button>
+	            	<button type="button" title="<?php  echo $this->__('View contents of your shopping cart') ?>" class="button btn-inline" onclick="setLocation('<?php echo $this->getBaseUrl()."onepagecheckout/" ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+	            	<?php echo $this->getChildHtml('extra_actions') ?>
+	            </div>
+			</div>
+        </div>
+    <?php else: ?>
+    	<div class="block-content">
+        <div class="block-content-inner" style="padding:0px 0px 46px 0px">
+            	<p class="empty" style="text-align:left;"><?php echo  $this->__('You have not selected any products yet.') ?>
+            	</p>
+            	<p class="empty" style="text-align:left;"> Do you need any <a href="<?php echo $this->getUrl('how-to-order')?>" style="color:#72AEBD">help?</a>
+ </p>
+            	<div class="cotton2"><img src="<?php echo $this->getSkinUrl("images/Miss-cotton2.png")?>" style="width:92px;bottom:13px" / ></div>					
+		</div>
+		</div>
+    <?php endif ?>
+</div>

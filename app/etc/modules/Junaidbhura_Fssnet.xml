@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Junaidbhura_Fssnet>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Junaidbhura_Fssnet>
+    </modules>
+</config>

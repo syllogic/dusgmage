@@ -1,0 +1,20 @@
+
+
+.select-lang:before, .select-sortby:before, .select-limiter:before{ display: none !important;}
+.product-view .product-shop .add-to-box .add-to-links li{ margin-right: 10px !important;}
+.block-subscribe input.input-text{ width: 190px !important;}
+.product-view .product-img-box .more-views li.thumbnail-item a{ height: 60px !important; width: 60px !important;}
+
+.newproductslider-item .item-inner .actions{ left: 30px !important}
+.products-grid .item .item-inner .actions{ left: 9px !important}
+.products-grid .item:hover .item-inner .actions{ top: 44% !important}
+.block .block-title strong, .brand-slider-title h2, .page-title h1, .page-title h2, .footer-static .footer-static-title h3, .banner-static-contain .banner-box .title, .ma-bestseller-sldier-title h2, .ma-newproductslider-title h2, .related-product-title h2, .ma-upsellslider-title h2, .banner-static2 .banner-box .title, .ma-featured-product-title h2{ font-size: 19px !important; font-weight: normal !important}
+    .footer-static li a, .footer-static .f-col4 label{ font-size: 12px !important;}
+.block .block-title strong{ font-size: 16px !important;}
+.block-header .phone, .pt_custommenu div.pt_menu .parentMenu a, .pt_custommenu div.pt_menu .parentMenu span.block-title{ font-size: 17px !important;}
+.pt_custommenu div.popup{ border: 1px solid #3f3f3f !important}
+.block-header .phone {line-height: 33px !important;}
+.price-box .price{ font-size: 20px !important;}
+.old-price .price{ font-size: 12px !important;}
+.price-cart{ float: left !important; margin-top: 10px !important}
+#product-options-wrapper{ float: left !important; width: 100%;}

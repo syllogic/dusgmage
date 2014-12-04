@@ -1,0 +1,5 @@
+[18-Apr-2014 12:37:30 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'File "export_product_stock_20140418.csv" do not exists' in /home/dusgin/public_html/lib/Varien/File/Csv.php:89
+Stack trace:
+#0 /home/dusgin/public_html/stockupdate/stockupdate.php(86): Varien_File_Csv->getData('export_product_...')
+#1 {main}
+  thrown in /home/dusgin/public_html/lib/Varien/File/Csv.php on line 89

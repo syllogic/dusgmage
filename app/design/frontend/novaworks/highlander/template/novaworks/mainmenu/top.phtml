@@ -1,0 +1,101 @@
+<!-- navigation BOF -->
+<?php 
+$megaeffect = Mage::getStoreConfig('themeoptions_general/menu/effect');
+$_menu = $this->renderCategoriesMenuHtml(FALSE, 0, 'level-top', 'sub-wrapper' );
+$routeName = Mage::app()->getRequest()->getRouteName();
+$identifier = Mage::getSingleton('cms/page')->getIdentifier(); 
+ 
+?>
+<div class="navbar visible-xs">
+    <div class="navbar navbar-inverse">
+        <div class="container nav-top"> 
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+				    <div class="nova-collapsed-icon">
+                    <span class="sr-only">
+	                    <i class="icon-menu-1"></i>
+                    </span>
+					</div>
+					<span class="navbar-brand"><?php echo $this->__('Navigation');?></span>
+                </button>
+				
+            </div>
+            <nav class="bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
+                <ul id="mt_accordionmenu" class="nav-accordion nav-mobile-accordion">
+                    <li class="<?php if($routeName == 'cms' && $identifier == 'home') {echo " active";}?>"><a href="<?php echo $this->getBaseUrl(); ?>"><?php echo $this->__('Home'); ?></a></li>
+                    <?php echo $this->renderCategoriesMenuHtml(TRUE, 0, 'level-top'); ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery("#mt_accordionmenu").mtAccordionMenu({
+                accordion:true,
+                speed: 400,
+                closedSign: 'collapse',
+                openedSign: 'expand',
+                mouseType: 0,
+                easing: 'easeInOutQuad'
+            });
+        });
+		jQuery(".navbar-toggle").click(function(){
+			jQuery(this).addClass("active");
+		});
+    </script>
+</div>
+<?php if($_menu): ?>
+<div class="nova-navigation hidden-xs">
+	<div class="nova-main-menu container">
+		<ul id="nova-nav" class="megamenu">
+			<?php if(Mage::getStoreConfig('themeoptions_general/menu/home')){?>
+			<li class="level0 home level-top<?php if($routeName == 'cms' && $identifier == 'home') {echo " active";}?>">
+				<a href="<?php echo $this->getBaseUrl(); ?>" class="level-top"><span><?php echo $this->__('Home'); ?></span></a>
+			</li> 
+			<?php }?>
+			<?php
+			echo $_menu;
+			if(Mage::getStoreConfig('themeoptions_general/menu/enable_custom')){
+				$getidentifier = Mage::getStoreConfig('themeoptions_general/menu/static_identifier');
+				$arrayidentifier = explode("\r\n", $getidentifier); 
+				foreach($arrayidentifier as $mcustom){ 
+					$custom_menu = Mage::getModel('cms/block')->load($mcustom);
+					if($custom_menu->getIsActive()) {
+						echo '
+						<li class="level0 level-top parent custom-block">
+							<a href="#" class="level-top">
+								<span>'.$custom_menu->getTitle().'</span>
+							</a>
+							<div class="sub-wrapper">'.$this->getLayout()->createBlock('cms/block')->setBlockId($mcustom)->toHtml().'</div>
+						</li>';
+					}
+				} 
+				$pageid = Mage::getStoreConfig('themeoptions_general/menu/page_id');
+				$arraypageid = explode("\r\n", $pageid);
+				foreach($arraypageid as $id){ 
+					$page = Mage::getModel('cms/page')->load($id);  
+					if($page->getIsActive()) {
+				?> 
+					<li class="level0 level-top parent custom-block <?php if($routeName == 'cms' && $identifier == $page->getIdentifier()) {echo " active";}?>">
+						<a href="<?php echo Mage::helper('cms/page')->getPageUrl($id);?>" class="level-top">
+							<span><?php echo $page->getTitle();?></span>
+						</a> 
+					</li> 
+				<?php 
+					}
+				}
+			}
+			?>
+		</ul>
+	</div>
+</div> 
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery(".megamenu").megamenu({
+            'animation':'<?php echo $megaeffect;?>',
+            'mm_timeout': 150
+	    });
+    });
+</script>
+<?php endif ?>
+<!-- navigation EOF -->

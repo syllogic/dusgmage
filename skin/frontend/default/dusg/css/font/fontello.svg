@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>
+Created by FontForge 20100429 at Mon Oct 29 04:40:05 2012
+ By root
+Copyright (C) 2012 by original authors @ fontello.com
+</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="364" >
+  <font-face 
+    font-family="fontello"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1000"
+    panose-1="2 0 6 3 0 0 0 0 0 0"
+    ascent="800"
+    descent="-200"
+    bbox="0 -120 1126 724"
+    underline-thickness="50"
+    underline-position="-100"
+    unicode-range="U+25B6-E800"
+  />
+<missing-glyph 
+d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
+    <glyph glyph-name=".notdef" 
+d="M33 0v666h265v-666h-265zM66 33h199v600h-199v-600z" />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="uni25B6" unicode="&#x25b6;" horiz-adv-x="530" 
+d="M500 326q15 -11 15 -26q0 -7 -3.5 -13.5t-7.5 -9.5l-4 -3l-428 -265q-23 -15 -40 -5t-17 39v514q0 29 17 39t40 -5z" />
+    <glyph glyph-name="uni270E" unicode="&#x270e;" horiz-adv-x="810" 
+d="M733 628q32 -32 47.5 -63.5t14.5 -46.5l-1 -16l-270 -271l-271 -271l-238 -50l51 238l541 541q2 0 6 0.5t17.5 -1.5t27.5 -7.5t34.5 -19t40.5 -33.5zM239 -11l23 24q0 44 -50 94q-22 22 -45.5 34.5t-36.5 14.5l-12 1l-24 -23l-17 -81q24 -13 46 -35t35 -46z" />
+    <glyph glyph-name="uni2714" unicode="&#x2714;" horiz-adv-x="789" 
+d="M0 329q0 82 31 153.5t84.5 125.5t125.5 85t154 31t153.5 -31t125 -85t84.5 -125.5t31 -153.5t-31 -153.5t-84.5 -125.5t-125 -85t-153.5 -31t-154 31t-125.5 85t-84.5 125.5t-31 153.5zM118 304q0 -10 7 -17l158 -158q8 -6 19.5 -11.5t21.5 -5.5h27q10 0 21.5 5.5
+t19.5 11.5l272 273q8 7 8 17t-8 16l-52 53q-7 7 -17 7t-17 -7l-223 -224q-8 -8 -18 -8t-16 8l-109 109q-8 8 -18 8t-16 -8l-53 -51q-7 -8 -7 -18z" />
+    <glyph glyph-name="uni2795" unicode="&#x2795;" horiz-adv-x="870" 
+d="M435 720q174 0 297 -123t123 -297t-123 -297t-297 -123t-297 123t-123 297t123 297t297 123zM486 249h202l-1 102h-201v201h-102v-201h-202v-102h202v-202h102v202z" />
+    <glyph glyph-name="uniE800" unicode="&#xe800;" horiz-adv-x="1228" 
+d="M103 -64v717h1023v-717h-1023zM205 59l225 225l-225 200v-425zM281 551l333 -293l333 293h-666zM328 38h573l-179 180l-108 -93l-107 93zM799 284l225 -225v425z" />
+  </font>
+</defs></svg>

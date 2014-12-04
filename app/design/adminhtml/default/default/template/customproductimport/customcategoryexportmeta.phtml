@@ -1,0 +1,67 @@
+<style type="text/css">
+
+ .wrapper table td{
+ 
+ font: 12px Arial;white-space:pre-wrap;width:20%;vertical-align: text-top;
+ 
+ }
+ .wrapper table input.submit{
+  border-color: #ED6502 #A04300 #A04300 #ED6502;
+    border-style: solid;
+    border-width: 1px;
+    color:#fff;
+    }
+    .wrapper table tr.headings td{
+     	color: #2D444F;
+    	padding: 5px;
+    	text-decoration: none;
+      font-weight:bold;
+      border-color: #F9F9F9 #D1CFCF #F9F9F9 #F9F9F9;
+    	border-style: solid;
+    	border-width: 1px;
+    	font-size: 0.9em;
+    }
+    .wrapper table.form-list td,.wrapper table.form-list td {
+    font: 12px Arial;
+    vertical-align: text-top;
+    white-space: normal;
+    width: 200px !important;
+}
+</style>
+<?php
+$websites = Mage::app()->getWebsites();
+$imageURL =Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)."adminhtml/default/default/images/btn_bg.gif";
+$self =$this->getUrl('*/*/post');
+
+?>
+<div class="content-header">
+    <h3 class="icon-head head-adminhtml-import">Export Meta Information for Categories</h3>    <p class="form-buttons"></p>
+</div>
+<?php
+print "<form enctype='multipart/form-data' action='$self' method='post'>";
+?>
+<div class="entry-edit">
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">Export Categories Meta's </h4>
+    <div class="form-buttons"></div>
+</div>
+
+<div id="base_fieldset" class="fieldset ">
+    <div class="hor-scroll">
+<?php
+
+echo '<table cellspacing="0" class="form-list">';
+print "<tr><td colspan='2'>
+<input  class='submit' type='submit' name='exportcsv' value='Export Category Metas' style='background:url(".$imageURL.");background-repeat:repeat-x;'></td>";
+echo "</tr></table>\n";
+echo '<input type="hidden" name="form_key" value="'. Mage::getSingleton('core/session')->getFormKey().'" />';
+
+?>
+  </div>
+        </div>
+<?php
+print "</form>";
+
+?>
+  </div>
+

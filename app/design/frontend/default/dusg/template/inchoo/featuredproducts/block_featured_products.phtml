@@ -1,0 +1,42 @@
+<?php
+/**
+ * @category     Inchoo
+ * @package     Inchoo Featured Products
+ * @author        Domagoj Potkoc, Inchoo Team <web@inchoo.net>
+ * @modified    Mladen Lotar <mladen.lotar@surgeworks.com>, Vedran Subotic <vedran.subotic@surgeworks.com>
+ */
+?>
+<?php 
+
+ $image_size = (int) Mage::getStoreConfig("featuredproducts/cmspage/max_image_dimension") ;
+ $totalPerPage = 4;
+ $counter =1;
+
+?>
+<?php if ( ($_products = $this->getProductCollection() ) && $_products->getSize() ): ?>
+ <h3 style="margin-top:100px;"><?php echo $this->__($this->getBlockLabel()) ?></h3>
+ <div class="bestsale-items" style="margin-top: 30px;">
+<?php foreach ($_products->getItems() as $_product):?>
+  <?php if( $counter <= $totalPerPage ): ?>
+   <div class="items items_<?php echo $counter ?> clearfix <?php if($counter == $totalPerPage){ ?>last<?php } ?>">
+	  <div class="bestsale-img">
+	     <a href="<?php echo $_product->getProductUrl() ?>" title="View <?php echo $this->htmlEscape($_product->getName()) ?>">
+	       <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($image_size, $image_size)?>" width="107" height="78" alt="Product image"  />
+	     </a>
+	  </div>
+      <div class="bestsale-info">
+		<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->htmlEscape($_product->getName()); ?></a></h2>
+		<?php  echo $this->getPriceHtml($_product); ?>
+		<?php 
+			if($this->getReviewsSummaryHtml($_product, 'short')):
+		 		echo $this->getReviewsSummaryHtml($_product, 'short');
+			else:
+		?>
+			<a class="add-your-review" href="<?php echo Mage::getBaseUrl(); ?>/review/product/list/id/<?php echo $_product->getId(); ?>/#review-form">Add Review</a>
+		<?php endif; ?>
+     </div>
+   </div>
+  <?php endif; $counter++; ?>
+<?php endforeach; ?>
+</div>
+<?php endif; ?>

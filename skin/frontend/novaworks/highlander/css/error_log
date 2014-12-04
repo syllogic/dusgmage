@@ -1,0 +1,18 @@
+[30-Oct-2014 18:01:10 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php:129
+Stack trace:
+#0 /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(129): PDO->__construct('mysql:host=loca...', 'dusgin_sqladmin', 'sqladmin#091220...', Array)
+#1 /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Mysql.php(96): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/dusgin/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(313): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/dusgin/public_html/lib/Zend/Db/Adapter/Abstract.php(459): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#4 /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SET NAMES utf8', Array)
+#5 /home/dusgin/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(419): Zend_Db_Adapter_Pdo_Abstract->query('SET NAMES utf8', Array)
+#6 /home/dusgin/public_html/app/code/core/Mage/Core/Model/Resource.php(169): Varien_Db_Adapter_Pdo_Mysql in /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php on line 144
+[30-Oct-2014 18:01:11 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No such file or directory' in /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php:129
+Stack trace:
+#0 /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(129): PDO->__construct('mysql:host=loca...', 'dusgin_sqladmin', 'sqladmin#091220...', Array)
+#1 /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Mysql.php(96): Zend_Db_Adapter_Pdo_Abstract->_connect()
+#2 /home/dusgin/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(313): Zend_Db_Adapter_Pdo_Mysql->_connect()
+#3 /home/dusgin/public_html/lib/Zend/Db/Adapter/Abstract.php(459): Varien_Db_Adapter_Pdo_Mysql->_connect()
+#4 /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SET NAMES utf8', Array)
+#5 /home/dusgin/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(419): Zend_Db_Adapter_Pdo_Abstract->query('SET NAMES utf8', Array)
+#6 /home/dusgin/public_html/app/code/core/Mage/Core/Model/Resource.php(169): Varien_Db_Adapter_Pdo_Mysql in /home/dusgin/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php on line 144

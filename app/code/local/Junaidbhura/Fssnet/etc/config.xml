@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Junaidbhura_Fssnet>
+			<version>0.0.3</version>
+		</Junaidbhura_Fssnet>
+	</modules>
+	
+	<global>
+		<helpers>
+			<fssnet>
+				<class>Junaidbhura_Fssnet_Helper</class>
+			</fssnet>
+		</helpers>
+		
+		<models>
+			<fssnet>
+				<class>Junaidbhura_Fssnet_Model</class>
+				<resourceModel>fssnet_mysql4</resourceModel>
+			</fssnet>
+			
+			<fssnet_mysql4>
+				<class>Junaidbhura_Fssnet_Model_Mysql4</class>
+				<entities>		  
+					<fssnetredirect>
+						<table>junaidbhura_fssnet_redirect</table>
+					</fssnetredirect>		  
+					
+					<fssnetresponse>
+						<table>junaidbhura_fssnet_response</table>
+					</fssnetresponse>
+				</entities>
+			</fssnet_mysql4>
+		</models>
+		
+		<blocks>
+			<fssnet>
+				<class>Junaidbhura_Fssnet_Block</class>
+			</fssnet>
+		</blocks>
+		
+		<resources>
+			<fssnet_setup>
+				<setup>
+					<module>Junaidbhura_Fssnet</module>
+				</setup>
+				
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</fssnet_setup>
+			
+			<fssnet_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</fssnet_write>
+			
+			<fssnet_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</fssnet_read>
+		</resources>
+	</global>
+	
+	<default>
+		<payment>
+			<fssnet>
+				<model>fssnet/standard</model>
+				<active>1</active>
+				<order_status>pending</order_status>
+				<title>FSS Net</title>
+				<payment_action>sale</payment_action>
+				<is_testing>0</is_testing>
+				<user_id></user_id>
+				<password></password>
+				<user_id_intl></user_id_intl>
+				<password_intl></password_intl>
+				<allowspecific>0</allowspecific>
+				<sort_order>0</sort_order>
+			</fssnet>
+		</payment>
+	</default>
+	
+	<frontend>
+		<routers>
+			<fssnet>
+				<use>standard</use>
+				<args>
+					<module>Junaidbhura_Fssnet</module>
+					<frontName>fssnet</frontName>
+				</args>
+			</fssnet>
+		</routers>
+	</frontend>
+	
+	<admin>
+		<routers>
+			<fssnet>
+				<use>admin</use>
+				<args>
+					<module>Junaidbhura_Fssnet</module>
+					<frontName>fssnet</frontName>
+				</args>
+			</fssnet>
+		</routers>
+	</admin>
+	
+	<adminhtml>
+		<menu>
+		
+			<fssnetlogsmenu translate="title" module="fssnet">
+				<title>FSS Net Logs</title>
+				<sort_order>85</sort_order>
+				<children>
+					
+					<fssnetredirectlogs module="fssnet">
+						<title>Redirect Log</title>
+						<action>fssnet/redirectlog</action>
+					</fssnetredirectlogs>
+					
+					<fssnetresponselogs module="fssnet">
+						<title>Response Log</title>
+						<action>fssnet/responselog</action>
+					</fssnetresponselogs>
+					
+				</children>
+			</fssnetlogsmenu>
+		
+		</menu>
+	
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<fssnetlogsmenu translate="title" module="fssnet">
+							<title>FSS Net Logs</title>
+							<sort_order>85</sort_order>
+							<children>
+							
+								<fssnetredirectlogs>
+									<title>Redirect Log</title>
+								</fssnetredirectlogs>
+								
+								<fssnetresponselogs>
+									<title>Response Log</title>
+								</fssnetresponselogs>
+								
+							</children>
+						</fssnetlogsmenu>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+
+</config> 

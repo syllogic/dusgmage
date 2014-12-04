@@ -1,0 +1,38 @@
+<script type="text/javascript">
+
+    function initLightbox(){
+        new popLightbox({
+            fileLoadingImage: '<?php echo $this->getSkinUrl('lightbox/images/loading.gif') ?>',
+            fileBottomNavCloseImage: '<?php echo $this->getSkinUrl('lightbox/images/closelabel.gif') ?>',
+            overlayOpacity: 0.8,   // controls transparency of shadow overlay
+            animate: true,         // toggles resizing animations
+            resizeSpeed: 7,        // controls the speed of the image resizing animations (1=slowest and 10=fastest)
+            borderSize: 10,
+            // When grouping images this is used to write: Image # of #.
+            // Change it for non-english localization
+            labelImage: "Image",
+            labelOf: "of"
+        });
+    }
+if( jQuery( window ).width()> 590 ) {
+
+    if (Prototype.Browser.IE) {
+        Event.observe(window, 'load', function(){ //KB927917 fix
+            initLightbox();
+        });
+    } else {
+        document.observe("dom:loaded", function(){
+            initLightbox();
+        });
+    }
+}
+ jQuery(document).ready(function () {
+          
+        jQuery(".ma-more-img a").click(function(){
+       
+         jQuery("a.ma-a-lighbox").attr("href",jQuery(this).attr("name"));
+          jQuery("#cntThumnailImages").val(jQuery(this).attr("id"));
+       }); 
+
+    });
+</script>

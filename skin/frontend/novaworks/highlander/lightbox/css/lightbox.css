@@ -1,0 +1,116 @@
+#lightbox, #lightbox1{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	z-index: 1001;
+	text-align: center;
+	line-height: 0;
+	}
+	
+	
+	
+
+#lightbox a img,#lightbox1 a img{ border: none; }
+
+#outerImageContainer, #outerImageContainer1{
+	position: relative;
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	}
+
+#imageContainer, #imageContainer1{
+	padding: 10px;
+	}
+
+#loading, #loading1{
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+	}
+#hoverNav, #hoverNav1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	}
+#imageContainer>#hoverNav, #imageContainer1>#hoverNav1{ left: 0;}
+#hoverNav a,#hoverNav1 a{ outline: none;}
+
+#prevLink, #nextLink, #prevLink1 , #nextLink1{
+	width: 49%;
+	height: 100%;
+	background: transparent url(../images/blank.gif) no-repeat; /* Trick IE into showing hover */
+	display: block;
+	}
+#prevLink, #prevLink1 { left: 0; float: left;}
+#nextLink, #nextLink1 { right: 0; float: right;}
+#prevLink:hover, #prevLink:visited:hover, #prevLink1:hover, #prevLink1:visited:hover { background: url(../images/prevlabel.gif) left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover, #nextLink1:hover, #nextLink1:visited:hover  { background: url(../images/nextlabel.gif) right 15% no-repeat; }
+
+
+#imageDataContainer, #imageDataContainer1{
+	font: 10px Verdana, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0 auto;
+	line-height: 1.4em;
+	}
+
+#imageData, #imageData1{	padding:0 10px; color: #666; }
+#imageData #imageDetails, #imageData1 #imageDetails1{ width: 70%; float: left; text-align: left; }	
+#imageData #caption, #imageData1 #caption1{ font-weight: bold;	}
+#imageData #numberDisplay, #imageData1 #numberDisplay1{ display: block; clear: left; padding-bottom: 1.0em;	}			
+#imageData #bottomNavClose, #imageData1 #bottomNavClose1{ width: 66px; float: right;  padding-bottom: 0.7em;	}	
+		
+#overlay, #overlay1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: auto;
+	background-color: #000;
+	}
+	
+
+/* Min-Width */
+.lbWidth, .lbWidth1 { /* most browsers */
+	position: absolute;
+	top: 0px; left: 0px;
+	width: 100%;
+	min-width: 790px;
+	}
+
+* html .lbContent, * html .lbContent1 { /* IE6 */
+	margin-left: -790px;
+	position:relative;
+	}
+
+* html .lbMinWidth, * html .lbMinWidth1 { /* IE6 */
+	padding-left: 790px;
+	}
+	
+	
+/* Clearfix */	
+.clearfix:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */ 
+	

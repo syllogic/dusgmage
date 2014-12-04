@@ -1,0 +1,211 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<?php global $var_yttheme;  ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php 
+if( Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && 
+Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms' ) : ?>	
+<body id="bd" class="free-edition <?php echo $var_yttheme->template ?> <?php echo $this->getBodyClass();?>"	>
+    <div id="sm_wrapper">
+        <!-- BEGIN: Header -->
+		<div id="sm_header" class="wrap">
+			<?php echo $this->getChildHtml('header') ?>
+			<!-- END: Header -->
+			<?php //if ($this->getChildHtml('slideshow')) : ?>
+			<!-- BEGIN: SlideShow -->
+			<div class="slide-wrap">
+				<div class="main clearfix">
+					<div class="">
+						<div id="sm_slideshow" class="">
+							<?php //echo $this->getChildHtml('slideshow') ?>
+                            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('slideshow-new')->toHtml() ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--[if IE 7]>
+				<br class="clear" />
+			<![endif]-->
+			
+			<!-- END: SlideShow -->		
+			<?php //endif; ?>
+		</div>
+		<div id="main-home">
+			<div class="wrapper">
+				<div class="page">
+					
+					<!-- BEGIN: top spotlight -->
+
+					<div id="sm_topsl" class="topsl-wrap">
+						<div class="container container-wrap">
+							<?php //echo $this->getChildHtml('topsl') ?>
+							<div class="inner-container">	
+								<div class="row">
+									<div class="span7d2" data-normal="span8" data-tablet="span8" data-stablet="span12" data-mobile="span12">
+										<div id="best-sales">
+											<!-- primary content -->
+											<?php echo $this->getChildHtml('content-top') ?>
+											<!-- // primary content -->
+										</div>
+									</div>
+									<div id="testspan" class="span4d8" data-normal="span4" data-tablet="span4" data-stablet="span12" data-mobile="span12">
+										<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('promotions')->toHtml() ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="span12" data-normal="span12" data-tablet="span12" data-stablet="span12">
+									<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('free-shipping-banner')->toHtml() ?>
+									</div>	
+								</div>	
+							</div>	
+						</div>
+					</div>
+
+					<!-- END: top spotlight -->				
+
+					<!-- BEGIN: Main Content -->
+					<div id="sm_container" class="wrap container container-wrap">
+						<!-- global messages -->
+						<?php echo $this->getChildHtml('global_messages') ?>
+						<!-- // global messages -->   
+						<!-- breadcrumbs -->
+						<?php echo $this->getChildHtml('breadcrumbs') ?>
+						<!-- // breadcrumbs -->
+						<div id="yt_content_main" class="yt-content-main clearfix">
+							<!-- primary content -->
+							<?php echo $this->getChildHtml('content') ?>
+							<!-- // primary content -->
+						</div>
+						<div id="yt_content_bottom" class="yt-content-bottom clearfix">
+							<!-- primary content -->
+							<?php /* <div class="container container-wrap"> */ ?>
+								<?php //echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/new.phtml')->toHtml()."xcxcx"; ?>
+								<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('new-products')->toHtml() ?>
+							<?php /* </div> */ ?>
+							<!-- // primary content -->
+						</div>
+					</div>
+					<div id="sm_footerwrap">
+					<div class="container container-wrap">
+						
+							<div id="footerwrap">
+								<!-- BEGIN: Bottom product slider -->
+								<?php if ($this->getChildHtml('botproduct')) : ?>
+									<div id="yt_botslider" class="wrap">
+										<div class="main clearfix">
+											<?php echo $this->getChildHtml('botproduct') ?>
+										</div>
+									</div>
+								<?php endif; ?>
+								<!-- END: Bottom product slider -->
+								<!-- BEGIN: Bottom spotlight -->
+								<?php if ($this->getChildHtml('botsl')) : ?>
+									<div id="yt_botsl" class="wrap">
+										<div class="main clearfix">
+											<?php echo $this->getChildHtml('botsl') ?>
+										</div>
+									</div>
+								<?php endif; ?>
+								<!-- END: Bottom spotlight -->
+								<!-- BEGIN: Bottom spotlight1 -->
+								<?php if ($this->getChildHtml('botsl1')) : ?>
+									<div id="yt_botsl1" class="wrap">
+										<div class="main clearfix">
+											<?php echo $this->getChildHtml('botsl1') ?>
+										</div>
+									</div>
+								<?php endif; ?>
+								<!-- END: Bottom spotlight1 -->
+								<!-- BEGIN: Footer -->
+								<?php  echo $this->getChildHtml('before_footer') ?>
+								<!-- END: Footer -->
+							</div>
+						
+					</div>
+					</div>
+					<div class="copy-right">
+						<?php echo $this->getChildHtml('footer') ?>
+					</div>	
+					<!-- END: Footerwrap -->
+					<?php echo $this->getChildHtml('before_body_end') ?>
+					
+					<?php echo $this->getAbsoluteFooter() ?>
+				</div>
+			</div>
+		</div>
+		<div id="bg_footer_bottom">&nbsp;</div>
+    </div>
+</body>
+<?php else: ?>
+<body id="bd" class="<?php echo $var_yttheme->template ?> <?php echo $this->getBodyClass();?>"	>
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col1-layout">
+            <div class="main">
+				<div  class="container container-wrap">
+					<div class="row">
+						<div class="wrapp-column">			
+							<div class="col-main">
+								<div class="span12" data-normal="span12" data-tablet="span12" data-stablet="span12">
+									<?php echo $this->getChildHtml('breadcrumbs') ?>
+									<?php echo $this->getChildHtml('global_messages') ?>
+									<?php echo $this->getChildHtml('content') ?>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php echo $this->getChildHtml('before_footer') ?>
+					<?php echo $this->getChildHtml('before_body_end') ?>
+				</div>
+				<div class="container ">
+					<div class="row">
+						<div class="copy-right span12">
+							<?php echo $this->getChildHtml('footer') ?>
+						</div>				
+					</div>				
+				</div>					
+            </div>
+        </div>
+		<div id="bg_footer_bottom">&nbsp;</div>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+<?php endif; ?>
+</html>

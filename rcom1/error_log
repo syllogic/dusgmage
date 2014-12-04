@@ -1,0 +1,8 @@
+[21-Dec-2013 08:06:43 Europe/Moscow] PHP Warning:  include_once(geoiploc.php): failed to open stream: No such file or directory in /home/dusgin/public_html/rcom1/index.php on line 26
+[21-Dec-2013 08:06:43 Europe/Moscow] PHP Warning:  include_once(): Failed opening 'geoiploc.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dusgin/public_html/rcom1/index.php on line 26
+[21-Dec-2013 08:06:44 Europe/Moscow] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/dusgin/public_html/rcom1/index.php:26) in /home/dusgin/public_html/rcom1/index.php on line 35
+[21-Dec-2013 08:06:59 Europe/Moscow] PHP Warning:  include_once(geoiploc.php): failed to open stream: No such file or directory in /home/dusgin/public_html/rcom1/index.php on line 26
+[21-Dec-2013 08:06:59 Europe/Moscow] PHP Warning:  include_once(): Failed opening 'geoiploc.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dusgin/public_html/rcom1/index.php on line 26
+[21-Dec-2013 08:07:00 Europe/Moscow] PHP Warning:  include_once(geoiploc.php): failed to open stream: No such file or directory in /home/dusgin/public_html/rcom1/index.php on line 26
+[21-Dec-2013 08:07:00 Europe/Moscow] PHP Warning:  include_once(): Failed opening 'geoiploc.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/dusgin/public_html/rcom1/index.php on line 26
+[21-Jun-2014 13:47:17 UTC] PHP Fatal error:  Class 'Mage_Newsletter_Helper_Data' not found in /home/dusgin/public_html/app/Mage.php on line 546

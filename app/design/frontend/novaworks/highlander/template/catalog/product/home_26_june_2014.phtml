@@ -1,0 +1,207 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+$storeId = Mage::app()->getStore()->getStoreId();
+ $pageLayout=$this->getLayout()->getBlock('root')->getTemplate();
+ $rating_wishlist_compare	 			= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/rating_wishlist_compare', $storeId);
+ $image_product_hover 		= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/image_product_hover', $storeId);
+ $ajax_cart		 			= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_cart', $storeId);
+ $quick_view	 			= Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/ajax_quickview', $storeId);
+$thumb_width =  Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/standard_image_width', $storeId);
+$thumb_height = Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/standard_image_height', $storeId);
+?>
+<?php
+    //$_productCollection=$this->getLoadedProductCollection();
+
+  switch($storeId){
+ 
+   case 4:
+          $your_category_id = 55;
+          break;
+   case 3:
+          $your_category_id = 53;
+          break;  
+   default:
+         $your_category_id = 6;
+          break;  
+  }
+  
+  $_category =  Mage::getModel('catalog/category')->load($your_category_id);
+  $categoryname = $_category->getName();
+$_productCollection = Mage::getModel('catalog/category')->load($your_category_id)
+->getProductCollection()
+->addAttributeToSelect('*')
+->addAttributeToFilter(
+    'status',
+    array('eq' =>'1')
+)->setPageSize(16)->setOrder('position','ASC');
+
+    $_helper = $this->helper('catalog/output');
+?>
+<?php if(!$_productCollection->count()): ?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+<div class="category-products page-title category-title">
+
+   <?php $_collectionSize = $_productCollection->count() ?>
+	<?php
+		if($pageLayout=='page/empty.phtml') {
+			$_productcolumnCount = 4;
+		}elseif($pageLayout=='page/1column.phtml') {
+			$_productcolumnCount = intval(Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/layout_one_column', $storeId));
+		if($_productcolumnCount == 5) {
+			$_col_md = 2;
+			$_boostrap_hack = " column-5-products";
+			$_layout = "list-1col-5";
+		}
+		elseif($_productcolumnCount == 4) {
+			$_col_md = 3;
+			$_layout = "list-1col-4";
+		}elseif($_productcolumnCount == 3){
+			$_col_md = 4;
+			$_layout = "list-1col-3";
+		}
+		}elseif(($pageLayout=='page/2columns-left.phtml') || ($pageLayout=='page/2columns-right.phtml')) {
+			$_productcolumnCount = intval(Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/layout_two_column', $storeId));
+			if($_productcolumnCount == 4) {
+				$_col_md = 3;
+				$_layout = "list-2col-4";
+		}elseif($_productcolumnCount == 3){
+			$_col_md = 4;
+			$_layout = "list-2col-3";
+		}
+	}else{
+		$_productcolumnCount = intval(Mage::getStoreConfig('themeoptions_general/prodcuts_list_page/layout_three_column', $storeId));
+		if($_productcolumnCount == 4) {
+			$_col_md = 3;
+			$_layout = "list-3col-4";
+		}elseif($_productcolumnCount == 3){
+			$_col_md = 4;
+			$_layout = "list-3col-3";
+		}
+	}
+	if($storeId !=2): // check for usd  site modified on 16 June 2014 
+?>
+<h1>BUY 100 % ORGANIC COTTON, Eco Friendly, BAMBOO CLOTHING ONLINE</h1>
+<?php 
+      endif;
+      if($storeId == 2): // check for usd  site modified on 16 June 2014
+  ?>
+<h1> <span style="font-style:italic;text-transform: capitalize;">
+Raise your Vibration. . Open your Heart. . Grow your Soul. . With the clothes you wear.
+</span></h1>
+<?php else:
+?>
+<h2> <span style="font-style:italic;text-transform: capitalize;">
+Raise your Vibration. . Open your Heart. . Grow your Soul. . With the clothes you wear.
+</span></h2>
+<?php
+      endif;
+?>      
+<br>
+        <?php $i=0; foreach ($_productCollection as $_product): ?>
+        <?php if ($i++%$_productcolumnCount==0): ?>
+        <div class="products-grid row<?php echo $_boostrap_hack?> <?php echo $_layout;?> nova-mg-pd">
+        <?php endif ?>
+     	<div class="item col-md-<?php echo $_col_md?> nova-mg-pd">
+			<div class="nova-product-images">
+				<?php include('view/labels.phtml')  ?>
+				<?php if($quick_view): ?>
+
+				<?php endif;?>
+	            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+	                          <?php
+	                if($image_product_hover) { ?>
+	                <div class="front margin-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($thumb_width,$thumb_height); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></div>
+	                <?php
+		                 $_gallery = Mage::getModel('catalog/product') -> load($_product -> getId()) -> getMediaGalleryImages();
+		                 foreach ($_gallery as $_image ):
+	                 ?>
+	                 <div class="product-img-additional back margin-image">
+	                 	<img src="<?php echo $this -> helper('catalog/image') -> init($_product, 'thumbnail', $_image -> getFile()) -> resize($thumb_width, $thumb_height);?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
+	                 </div>
+	                 <?php
+							break;
+							endforeach;
+					?>
+					<?php
+						}else{
+					?>
+						<div class="margin-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($thumb_width,$thumb_height); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+					 	</div>
+					<?php
+						}
+					?>
+	            </a>
+				<div class="descriptions-hidden">
+					<div class="quick-act">
+						<?php if($ajax_cart):?>
+						<div class="button-ajax-cart-id-<?php echo $_product->getId()?>">
+						<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ): ?>
+							<a rel="tooltip" class="add_to_cart_small" onclick="ajaxcart('<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId()?>');"><?php echo __('Add to Cart')?></a>
+						<?php else:?>
+							<a class="quickview_small" href="<?php echo $this->getUrl('ajax/index/quickview',array('product_id'=>$_product->getId()));?>" data-id="<?php echo $_product->getId()?>"><?php echo __('Add to Cart')?></a>
+						<?php endif; ?>
+						</div>
+						<?php else:?>
+							<a rel="tooltip" class="add_to_cart_small" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>');"><?php echo __('Add to Cart')?></a>
+						<?php endif; ?>
+					</div>
+							<?php if($rating_wishlist_compare || $quick_view):?>
+					<div class="quick-whl">
+					<?php if($rating_wishlist_compare):?>
+						<?php if ($this->helper('wishlist')->isAllow()) : ?>
+							<a title="Wishlist" class="add_to_wishlist_small button-ajax-wishlist-id-<?php echo $_product->getId()?>" href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" data-id="<?php echo $_product->getId()?>"><i class="icon-wishlist"></i></a>
+						<?php endif; ?>
+						<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+							<a title="Compare" class="add_to_compare_small button-ajax-compare-id-<?php echo $_product->getId()?>" href="<?php echo $_compareUrl ?>" data-id="<?php echo $_product->getId()?>"><i class="icon-compare"></i></a>
+						<?php endif; ?>
+					<?php endif; ?>
+						<?php if($quick_view):?>
+						<div class="quickview-box">
+							<a class="quickview_small" href="<?php echo $this->getUrl('ajax/index/quickview',array('product_id'=>$_product->getId()));?>" data-id="<?php echo $_product->getId()?>"><i class="icon-search"></i></a>
+						</div>
+						<?php endif;?>
+					</div>
+					<?php endif;?>
+				</div>
+		    </div>
+            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h3>
+			<?php echo $this->getPriceHtml($_product, true) ?>
+
+			<div class="rating-product-box">
+            	<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+			</div>
+
+		</div>
+        <?php if ($i%$_productcolumnCount==0 || $i==$_collectionSize): ?>
+        </div>
+        <?php endif ?>
+		<?php endforeach ?>
+</div>
+<?php endif; ?>

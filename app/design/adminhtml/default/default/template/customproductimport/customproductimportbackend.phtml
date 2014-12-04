@@ -1,0 +1,76 @@
+<style type="text/css">
+
+ .wrapper table td{
+ 
+ font: 12px Arial;white-space:pre-wrap;width:20%;vertical-align: text-top;
+ 
+ }
+ .wrapper table input.submit{
+  border-color: #ED6502 #A04300 #A04300 #ED6502;
+    border-style: solid;
+    border-width: 1px;
+    color:#fff;
+    }
+    .wrapper table tr.headings td{
+     	color: #2D444F;
+    	padding: 5px;
+    	text-decoration: none;
+      font-weight:bold;
+      border-color: #F9F9F9 #D1CFCF #F9F9F9 #F9F9F9;
+    	border-style: solid;
+    	border-width: 1px;
+    	font-size: 0.9em;
+    }
+    .wrapper table.form-list td,.wrapper table.form-list td {
+    font: 12px Arial;
+    vertical-align: text-top;
+    white-space: normal;
+    width: 200px !important;
+}
+</style>
+<?php
+
+$imageURL =Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)."adminhtml/default/default/images/btn_bg.gif";
+$getSession =Mage::getSingleton('core/session')->getCSVValue();
+//echo "<pre>",print_r($getSession),"</pre>";
+
+if( isset($getSession) && !empty($getSession) ){
+      
+	echo $getSession;
+Mage::getSingleton('core/session')->setCSVValue("");
+}else{
+$self =$this->getUrl('*/*/post');
+
+?>
+<div class="content-header">
+    <h3 class="icon-head head-adminhtml-import">Create Simple Products</h3>    <p class="form-buttons"></p>
+</div>
+<?php
+print "<form enctype='multipart/form-data' action='$self' method='post'>";
+?>
+<div class="entry-edit">
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend">Choose CSV file to Import Simple Products</h4>
+    <div class="form-buttons"></div>
+</div>
+
+<div id="base_fieldset" class="fieldset ">
+    <div class="hor-scroll">
+<?php
+
+echo '<table cellspacing="0" class="form-list">';
+echo "<tr>\n";
+print "<td class='label'><label for='import_file'>Select File to Import <span class='required'>*</span></label></td><td class='value'>
+<input size='50' type='file' name='csv_import' id='csv_import'></td></tr>\n";
+print "<tr><td colspan='2' ><input class='submit' type='submit' name='importcsv' value='Import CSV' style='background:url(".$imageURL.");background-repeat:repeat-x;'></td>";
+echo "</tr></table>\n";
+echo '<input type="hidden" name="form_key" value="'. Mage::getSingleton('core/session')->getFormKey().'" />';
+
+?>
+  </div>
+        </div>
+<?php
+print "</form>";
+}
+?>
+</div>

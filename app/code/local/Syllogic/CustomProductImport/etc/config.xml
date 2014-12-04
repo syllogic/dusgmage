@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Syllogic_CustomProductImport>
+      <version>0.1.0</version>
+    </Syllogic_CustomProductImport>
+  </modules>
+  <global>
+    <helpers>
+      <customproductimport>
+        <class>Syllogic_CustomProductImport_Helper</class>
+      </customproductimport>
+    </helpers>
+	<blocks>
+	  <customproductimport>
+		<class>Syllogic_CustomProductImport_Block</class>
+	  </customproductimport>
+	</blocks>
+  </global>
+  <admin>
+	<routers>
+	  <customproductimport>
+	    <use>admin</use>
+		<args>
+		  <module>Syllogic_CustomProductImport</module>
+		  <frontName>customproductimport</frontName>
+		</args>
+	  </customproductimport>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <customproductimport module="customproductimport">
+		<title>CustomProductImport</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <customproductimportbackend module="customproductimport">
+			<title>Create Multiple Products</title>
+			<sort_order>1</sort_order>
+			  <children>
+			  <submenu1 module="customproductimport">
+		       <title>Create Simple Products Only</title>
+			    <sort_order>1</sort_order>
+			     <action>customproductimport/adminhtml_customproductimportbackend</action>
+			  </submenu1>
+			  </children>
+			  	 <children>
+			      <customproductimportsubmenu4 module="customproductimport">
+		          <title>Create Configurable Products with existing Simple Products</title>
+			       <sort_order>3</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportsubmenu4</action>
+			     </customproductimportsubmenu4>
+			 </children> 
+		     <children>
+			      <customproductimportsubmenu2 module="customproductimport">
+		          <title>Create Configurable Products with new Simple Products</title>
+			       <sort_order>2</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportsubmenu2</action>
+			     </customproductimportsubmenu2>
+			 </children>
+		
+		 </customproductimportbackend>
+	</children>
+	<children>
+			      <customproductimportupdateprice module="customproductimport">
+		          <title>Bulk Update of Prices</title>
+			       <sort_order>4</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportupdateprice</action>
+			     </customproductimportupdateprice>
+	</children>
+	<children>
+			      <customproductexportmeta module="customproductimport">
+		          <title>Export Meta Information for Products</title>
+			       <sort_order>5</sort_order>
+			       <action>customproductimport/adminhtml_customproductexportmeta</action>
+			     </customproductexportmeta>
+	</children> 
+	<children>
+			      <customcategoryexportmeta module="customproductimport">
+		          <title> Export Meta Information for Categories</title>
+			       <sort_order>6</sort_order>
+			       <action>customproductimport/adminhtml_customcategoryexportmeta</action>
+			     </customcategoryexportmeta>
+	</children>
+	<children>
+			      <customproductimportmeta module="customproductimport">
+		          <title>Import Meta Information for Products</title>
+			       <sort_order>7</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportmeta</action>
+			     </customproductimportmeta>
+	</children>
+	<children>
+			      <customcategoryimportmeta module="customproductimport">
+		          <title>Import Meta Information for Categories</title>
+			       <sort_order>8</sort_order>
+			       <action>customproductimport/adminhtml_customcategoryimportmeta</action>
+			     </customcategoryimportmeta>
+	</children>
+	<children>
+			      <customproductupdateattributes module="customproductimport">
+		          <title>Update attributes for the products</title>
+			       <sort_order>9</sort_order>
+			       <action>customproductimport/adminhtml_customproductupdateattributes</action>
+			     </customproductupdateattributes>
+	</children>
+	<children>
+			      <customproductupdateimages module="customproductimport">
+		          <title>Bulk Update images for Product </title>
+			       <sort_order>10</sort_order>
+			       <action>customproductimport/adminhtml_customproductupdateimages</action>
+			     </customproductupdateimages>
+	</children>
+	<children>
+			      <customproductimportupdatestock module="customproductimport">
+		          <title>Bulk Update of Stock</title>
+			       <sort_order>3</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportupdatestock</action>
+			     </customproductimportupdatestock>
+	</children>
+	  </customproductimport>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <customproductimport module="customproductimport">
+		<title>CustomProductImport</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <customproductimportbackend module="customproductimport">
+			<title>Create Multiple Products</title>
+			<sort_order>1</sort_order>
+			  <children>
+			  <customproductimport_submenu1 module="customproductimport">
+		       <title>Create Simple Products Only</title>
+			    <sort_order>1</sort_order>
+			     <action>customproductimport/adminhtml_customproductimportbackend</action>
+			  </customproductimport_submenu1>
+			  </children>
+			   <children>
+			      <customproductimportsubmenu4 module="customproductimport">
+		          <title>Create Configurable Products with existing Simple Products</title>
+			       <sort_order>3</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportsubmenu4</action>
+			     </customproductimportsubmenu4>
+			 </children>
+		     <children>
+			      <customproductimportsubmenu2 module="customproductimport">
+		          <title>Create Configurable Products with new Simple Products</title>
+			       <sort_order>2</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportsubmenu2</action>
+			     </customproductimportsubmenu2>
+			 </children>
+
+		 </customproductimportbackend>
+	</children>
+	<children>
+			      <customproductimportupdateprice module="customproductimport">
+		          <title>Bulk Update of Prices</title>
+			       <sort_order>4</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportupdateprice</action>
+			     </customproductimportupdateprice>
+	</children>
+	<children>
+			      <customproductexportmeta module="customproductimport">
+		          <title>Export Meta Information for Products</title>
+			       <sort_order>5</sort_order>
+			       <action>customproductimport/adminhtml_customproductexportmeta</action>
+			     </customproductexportmeta>
+	</children>
+	<children>
+			      <customcategoryexportmeta module="customproductimport">
+		          <title> Export Meta Information for Categories</title>
+			       <sort_order>6</sort_order>
+			       <action>customproductimport/adminhtml_customcategoryexportmeta</action>
+			     </customcategoryexportmeta>
+	</children>
+	<children>
+			      <customproductimportmeta module="customproductimport">
+		          <title>Import Meta Information for Products</title>
+			       <sort_order>7</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportmeta</action>
+			     </customproductimportmeta>
+	</children>
+	<children>
+			      <customcategoryimportmeta module="customproductimport">
+		          <title>Import Meta Information for Categories</title>
+			       <sort_order>8</sort_order>
+			       <action>customproductimport/adminhtml_customcategoryimportmeta</action>
+			     </customcategoryimportmeta>
+	</children>
+	<children>
+			      <customproductupdateattributes module="customproductimport">
+		          <title>Update attributes for the products</title>
+			       <sort_order>9</sort_order>
+			       <action>customproductimport/adminhtml_customproductupdateattributes</action>
+			     </customproductupdateattributes>
+	</children>
+	<children>
+			      <customproductupdateimages module="customproductimport">
+		          <title>Bulk Update images for Product </title>
+			       <sort_order>10</sort_order>
+			       <action>customproductimport/adminhtml_customproductupdateimages</action>
+			     </customproductupdateimages>
+	</children>
+	<children>
+			      <customproductimportupdatestock module="customproductimport">
+		          <title>Bulk Update of Stock</title>
+			       <sort_order>3</sort_order>
+			       <action>customproductimport/adminhtml_customproductimportupdatestock</action>
+			     </customproductimportupdatestock>
+	</children>
+	
+	  </customproductimport>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<customproductimport>
+		  <file>customproductimport.xml</file>
+		</customproductimport>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 

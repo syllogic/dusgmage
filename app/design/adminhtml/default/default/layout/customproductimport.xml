@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+<!-- ====================================== Create simple product phtml starts ========================================== -->
+
+  <customproductimport_adminhtml_customproductimportbackend_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductimportbackend" name="customproductimportbackend" template="customproductimport/customproductimportbackend.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductimportbackend_index>
+  
+  <!-- ====================================== Create simple product phtml ends ========================================== -->
+  
+  <!-- =================================== Create configurable products with existing simple products phtml starts ====== -->
+  
+   <customproductimport_adminhtml_customproductimportsubmenu2_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductimportsubmenu2" name="customproductimportsubmenu2" template="customproductimport/customproductimportsubmenu2.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductimportsubmenu2_index>
+  
+<!-- =================================== Create configurable products with existing simple products phtml ends ====== -->  
+ 
+ <!-- =================================== Create configurable products with new simple products phtml starts ====== -->
+ 
+  <customproductimport_adminhtml_customproductimportsubmenu4_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductimportsubmenu4" name="customproductimportsubmenu4" template="customproductimport/customproductimportsubmenu4.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductimportsubmenu4_index>
+  
+  <!-- =================================== Create configurable products with new simple products phtml ends ====== -->
+  
+  <!-- ================================ Bulk Update of stock phtml starts ======================================== -->
+  
+  <customproductimport_adminhtml_customproductimportupdatestock_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductimportupdatestock" name="customproductimportupdatestock" template="customproductimport/customproductimportupdatestock.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductimportupdatestock_index>
+  
+  <!-- ================================ Bulk Update of stock phtml ends ======================================== -->
+  
+  <!-- ================================ Bulk Update of price phtml starts ======================================== -->
+  
+  <customproductimport_adminhtml_customproductimportupdateprice_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductimportupdateprice" name="customproductimportupdateprice" template="customproductimport/customproductimportupdateprice.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductimportupdateprice_index>
+  
+  <!-- ================================ Bulk Update of price phtml starts ======================================== -->
+ 
+ <!-- ================ Export Meta Information for Categories phtml starts ======================================== -->
+ 
+  <customproductimport_adminhtml_customcategoryexportmeta_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customcategoryexportmeta" name="customcategoryexportmeta" template="customproductimport/customcategoryexportmeta.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customcategoryexportmeta_index>
+  
+ <!-- ================ Export Meta Information for Categories phtml ends ======================================== -->
+
+ <!-- ================ Import Meta Information for Categories phtml starts ======================================== -->
+ 
+   <customproductimport_adminhtml_customcategoryimportmeta_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customcategoryimportmeta" name="customcategoryimportmeta" template="customproductimport/customcategoryimportmeta.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customcategoryimportmeta_index>
+  
+ <!-- ================ Import Meta Information for Categories phtml ends ======================================== -->
+ 
+ <!-- ================ Import Meta Information for Products  phtml starts ======================================== -->
+  
+   <customproductimport_adminhtml_customproductimportmeta_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductimportmeta" name="customproductimportmeta" template="customproductimport/customproductimportmeta.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductimportmeta_index>
+  
+  <!-- ================ Import Meta Information for Products phtml ends ======================================== -->
+  
+  
+   <customproductimport_adminhtml_customproductexportmeta_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductexportmeta" name="customproductexportmeta" template="customproductimport/customproductexportmeta.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductexportmeta_index>
+  
+    <!-- ================ Update attributes for the products phtml starts ======================================== -->
+  
+  
+   <customproductimport_adminhtml_customproductupdateattributes_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductupdateattributes" name="customproductupdateattributes" template="customproductimport/customproductupdateattributes.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductupdateattributes_index>
+  
+   <!-- ================ Update attributes for the products phtml ends ======================================== -->
+  
+    <!-- ================ Import Meta Information for Products phtml starts ======================================== -->
+  
+  
+   <customproductimport_adminhtml_customproductupdateimages_index>
+	<reference name="content">
+	  <block type="customproductimport/adminhtml_customproductupdateimages" name="customproductupdateimages" template="customproductimport/customproductupdateimages.phtml"/>
+	</reference>
+  </customproductimport_adminhtml_customproductupdateimages_index>
+ 
+ <!-- ================ Import Meta Information for Products phtml ends ======================================== -->
+</layout>

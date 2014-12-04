@@ -1,0 +1,256 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+ require  ('nova-framework/twitter/tmhOAuth.php');
+ require  ('nova-framework/twitter/tmhUtilities.php');
+ require  ('nova-framework/twitter/twitter-api-utils.php');
+ $storeId = Mage::app()->getStore()->getStoreId();
+ $twitter_account	=	Mage::getStoreConfig('themeoptions_general/general_options/your_twitter_account', $storeId);
+ $consumer_key		=	Mage::getStoreConfig('themeoptions_general/general_options/your_twitter_consumer_key', $storeId);
+ $consumer_secret	=	Mage::getStoreConfig('themeoptions_general/general_options/your_twitter_consumer_secret', $storeId);
+ $user_token		=	Mage::getStoreConfig('themeoptions_general/general_options/your_twitter_access_token', $storeId);
+ $user_secret		=	Mage::getStoreConfig('themeoptions_general/general_options/your_twitter_access_token_secret', $storeId);
+ $routeName = Mage::app()->getRequest()->getRouteName();  
+ $identifier = Mage::getSingleton('cms/page')->getIdentifier();  
+
+ $tmhOAuth = new tmhOAuth(array(
+  'consumer_key'    => $consumer_key,
+  'consumer_secret' => $consumer_secret,
+  'user_token'      => $user_token,
+  'user_secret'     => $user_secret,
+  'curl_ssl_verifypeer'   => false,
+));
+
+$code = $tmhOAuth->request('GET', $tmhOAuth->url('1.1/statuses/user_timeline'), array(
+  'include_entities' => '1',
+  'include_rts'      => '1',
+  'screen_name'      => $twitter_account,
+  'count'            => 2,
+));
+ $twitter_account		=	Mage::getStoreConfig('themeoptions_general/general_options/your_twitter_account', $storeId);
+ $fb_url						=	Mage::getStoreConfig('themeoptions_general/general_options/your_fb_url', $storeId);
+ $fb_skin						=	Mage::getStoreConfig('themeoptions_general/general_options/fb_skin', $storeId);
+ $gotop_button			=	Mage::getStoreConfig('themeoptions_general/general_options/gotop_button', $storeId);
+?>
+
+<?php if($routeName == 'cms' && $identifier == Mage::getStoreConfig('web/default/cms_home_page')): ?>
+
+	<?php if ($block_prime_fire = $this->getLayout()->createBlock('cms/block')->setBlockId('block_prime_fire')->toHtml()): ?>
+		<div id="home-prime-fire">
+			<?php echo $block_prime_fire; ?>
+		</div>
+	<?php endif;?>
+	<?php
+		if($block_parallax_2 =  $this->getLayout()->createBlock('cms/block')->setBlockId('block_parallax_2')->toHtml()):
+		echo $block_parallax_2;
+		endif;	 
+	?>
+	<?php if ($block_bottom_info = $this->getLayout()->createBlock('cms/block')->setBlockId('block_bottom_info')->toHtml()): ?>
+	<div class="footer-info-top">
+		<div class="footer-info">
+		<?php echo $block_bottom_info;?>
+		</div>
+	</div>
+	<?php endif;?>
+	
+	<?php if ($block_products_list_4_columns = $this->getLayout()->createBlock('cms/block')->setBlockId('block_products_list_4_columns ')->toHtml()): ?>
+	<div class="nova-container-shortcode">
+		<div class="row nova-mg-pd products-list-4-col">
+			<?php echo $block_products_list_4_columns ?>	
+		</div>
+	</div>
+	<?php endif;?>	
+
+	<?php if ($block_brand_list = $this->getLayout()->createBlock('cms/block')->setBlockId('block_brand_list')->toHtml()): ?>
+		<div class="brand-slider">
+			<div class="home-list-title">
+				<h3 class="title"><?php echo $this->__('Client');?></h3>
+			</div>
+			<div class="brand-list">
+				<div id="brand-list" class="owl-carousel">
+					<?php echo $block_brand_list; ?>	
+				</div>
+			</div>
+		</div>
+	<?php endif;?>	
+ 
+	<!--- Brand-list --->
+	<script>
+		jQuery(document).ready(function($) {
+			jQuery("#brand-list").owlCarousel({
+				items : 5, //10 items above 1000px browser width
+				itemsDesktop : [1000,5], //5 items between 1000px and 901px
+				itemsDesktopSmall : [900,4], // 3 items betweem 900px and 601px
+				itemsTablet: [600,3], //2 items between 600 and 0;
+				itemsMobile : [320,2],
+				navigation : true,
+				navigationText : ["<i class=\"icon-left-open\"></i>","<i class=\"icon-right-open\"></i>"], 
+				pagination : false
+			});
+		}); 
+	</script>
+	<!--- End Slider --->
+<?php endif;?>
+<div class="newsletter-box">
+		<?php echo $this->getChildHtml('newsletter') ?>
+</div>
+
+<div class="footer-bg">
+	<div class="footer-info-container">
+	    <div class="footer-info">
+	    	<div class="row nova-footer-info nova-mg-pd">
+				<div class="col-md-3 nova-footer nova-footer-box1 collapsible mobile-collapsible">
+					<?php if ($block_about_box = $this->getLayout()->createBlock('cms/block')->setBlockId('block_about_box')->toHtml()): ?>
+						<?php echo $block_about_box; ?>
+					<?php endif;?>
+				</div>
+				<div class="col-md-5 nova-footer nova-footer-box2 collapsible mobile-collapsible">
+					<?php if ($block_our_blogs = $this->getLayout()->createBlock('cms/block')->setBlockId('block_our_blogs')->toHtml()): ?>
+						<?php echo $block_our_blogs; ?>
+					<?php endif;?>	
+				</div>
+				<div class="col-md-3 nova-footer nova-footer-box3 collapsible mobile-collapsible">
+					<?php if ($block_photo_gallery = $this->getLayout()->createBlock('cms/block')->setBlockId('block_photo_gallery')->toHtml()): ?>
+						<?php echo $block_photo_gallery; ?>
+					<?php endif;?>
+				</div>
+			</div>
+	    </div>
+	</div>   
+	<div class="footer-container">
+		<div class="footer-aditional">
+			<div class="box-border-3 border-top pading-top-bottom-20">
+				<div class="aditional-left">
+			    	<?php if ($aditional_footer_left = $this->getLayout()->createBlock('cms/block')->setBlockId('aditional_footer_left')->toHtml()): ?>
+				    	<?php echo $aditional_footer_left; ?>
+				    <?php endif;?>				
+				</div>
+				
+				<div class="twitter collapsible mobile-collapsible">
+						<?php if($twitter_account && $consumer_key && $consumer_secret && $user_token && $user_secret):?>
+							<h4>Latest Tweets</h4>
+							<div class="block-content">
+							<ul id="twitter_update_list">
+								<div class="twitter-posts">
+									<?php
+										if ($code == 200) {
+							  				$timeline = json_decode($tmhOAuth->response['response'], true);
+											foreach ($timeline as $tweet) :
+											    $entified_tweet = tmhUtilities::entify_with_options($tweet);
+											    $is_retweet = isset($tweet['retweeted_status']);
+							
+											    $diff = time() - strtotime($tweet['created_at']);
+											    if ($diff < 60*60)
+											      $created_at = floor($diff/60) . ' minutes ago';
+											    elseif ($diff < 60*60*24)
+											      $created_at = floor($diff/(60*60)) . ' hours ago';
+							   			 else
+							      			$created_at = date('M d, Y g:i a', strtotime($tweet['created_at']));
+							
+							    			
+								            $html = $tweet['text'];
+								            $html = twitter_api_html( $html );	
+								            $link = 'http://twitter.com/'.$tweet['user']['screen_name'].'/status/'.$tweet['id_str'];
+								            $date = '<time datetime="'.$created_at.'">'.$created_at.'</time>';						
+										  ?>
+										  <li><div class="text"><?php echo twitter_api_expand_urls($html); ?>
+										  <p class="tweet-details"><a target="_blank" href="<?php echo $link ?>"><?php echo $date;?></a></p>
+										  </div>
+										  
+										  </li>
+										  <?php
+										  endforeach;
+										} else {
+										}
+									?>
+								</div>
+							</ul>
+							</div>							
+					<?php endif?>
+				</div>
+				<div class="facebook collapsible mobile-collapsible">
+				<?php if($fb_url):?>
+					<h4>FACEBOOK</h4>
+					<div class="block-content">
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					  	var js, fjs = d.getElementsByTagName(s)[0];
+					  	if (d.getElementById(id)) return;
+					  	js = d.createElement(s); js.id = id;
+					  	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=129137010571421";
+					  	fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+					</script>
+					<div class="fb-like-box" data-href="<?php echo $fb_url?>" data-width="293" data-height="280" data-show-faces="true" data-colorscheme="<?php echo $fb_skin?>" data-stream="false" data-header="true"></div>	
+					</div>
+					<?php endif?>		
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>
+<div class="copyright-footer">
+	<div class="footer">
+		<div class="row nova-mg-pd">	    
+	    	<div class="col-xs-12 col-sm-6 col-md-8 nova-mg-pd">		    		
+		    	<?php echo $this->getChildHtml('footer_links') ?>
+		    	<address><?php echo $this->getCopyright() ?></address>
+	    	</div>
+	    	<div class="col-xs-6 col-sm-6 col-md-4 payment-logo nova-mg-pd">
+				<?php if ($block_bottom_right = $this->getLayout()->createBlock('cms/block')->setBlockId('block_bottom_right')->toHtml()): ?>
+					<?php echo $block_bottom_right; ?>
+				<?php endif;?>			 
+	    	</div>
+	    </div>
+    </div>
+</div>
+<?php
+if($gotop_button):
+?>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery().UItoTop({ easingType: 'easeOutQuart' });		
+});
+</script>
+<?php endif;?>
+
+<!--- Our Clinet --->
+<script>
+	jQuery(document).ready(function($) {
+		jQuery("#our-client").owlCarousel({
+			items : 5, //10 items above 1000px browser width
+			itemsDesktop : [1000,5], //5 items between 1000px and 901px
+			itemsDesktopSmall : [900,4], // 3 items betweem 900px and 601px
+			itemsTablet: [600,3], //2 items between 600 and 0;
+			itemsMobile : [320,2],
+			navigation : true,
+			navigationText : ["<i class=\"icon-left-open\"></i>","<i class=\"icon-right-open\"></i>"], 
+			pagination : false
+		});
+	}); 
+</script>
+<!--- End Our Clinet --->
+
+

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<widgets>
+    <widgetproductslist_products type="widgetproductslist/widget_products" translate="name description" module="widgetproductslist">
+        <name>Products List</name>
+        <description>List Products</description>
+        <parameters>
+            <widget_title>
+                <label>Widget Title</label>
+                <visible>1</visible>
+                <value>Widget Products List</value>
+                <type>text</type>
+            </widget_title>
+            <category_id>
+                <label>Categories</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>multiselect</type>
+                <source_model>widgetproductslist/categories</source_model>
+            </category_id>
+            <is_mode>
+                <label>Mode</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>widgetproductslist/mode</source_model>
+            </is_mode>
+            <template translate="label">
+                <label>Layout</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <values>
+                    <notemp translate="label">
+                        <value></value>
+                        <label>Select Layout</label>
+                    </notemp>
+                    <productslist translate="label">
+                        <value>novaworks/widgetproductslist/productslist.phtml</value>
+                        <label>Products List</label>
+                    </productslist>
+                    <products_list_4col translate="label">
+                        <value>novaworks/widgetproductslist/products_list_4col.phtml</value>
+                        <label>Products List 4 Columns</label>
+                    </products_list_4col>
+                     <products_list_slidebar translate="label">
+                        <value>novaworks/widgetproductslist/products_list_slidebar.phtml</value>
+                        <label>Products List In Sidebar</label>
+                    </products_list_slidebar>
+                    <productsscroller translate="label">
+                        <value>novaworks/widgetproductslist/productsscroller.phtml</value>
+                        <label>Products Scroller</label>
+                    </productsscroller>
+                    <productfilters translate="label">
+                        <value>novaworks/widgetproductslist/product-filters.phtml</value>
+                        <label>Products Filters</label>
+                    </productfilters>
+                </values>
+            </template>
+             <category_select>
+                <label>Category Select</label>
+                <visible>1</visible>
+                <required>0</required>
+                <type>select</type>
+                <source_model>widgetproductslist/categories</source_model>
+                <description><![CDATA[(Use Layout Products Filter)]]></description>
+            </category_select>
+            <product_count>
+                <label>Qty</label>
+                <visible>1</visible>
+                <required>1</required>
+                <value>10</value>
+                <type>text</type>
+            </product_count>
+            <show_items>
+                <label>Show items</label>
+                <visible>1</visible>
+                <value>5</value>
+                <type>text</type>
+                <description><![CDATA[(Use Layout Products Scroller)]]></description>
+            </show_items>
+             <show_items_desktop>
+                <label>Show items in Desktop</label>
+                <visible>1</visible>
+                <value>4</value>
+                <type>text</type>
+                <description><![CDATA[(Use Layout Products Scroller. Number items between 1000px and 901px)]]></description>
+            </show_items_desktop>
+             <show_items_desktop_small>
+                <label>Show items in Desktop Small</label>
+                <visible>1</visible>
+                <value>3</value>
+                <type>text</type>
+                <description><![CDATA[(Use Layout Products Scroller. Number items betweem 900px and 601px)]]></description>
+            </show_items_desktop_small>
+              <show_items_tablet>
+                <label>Show items in Tablet</label>
+                <visible>1</visible>
+                <value>2</value>
+                <type>text</type>
+                <description><![CDATA[(Use Layout Products Scroller. Number items between 600px and 321px;)]]></description>
+            </show_items_tablet>
+               <show_items_mobile>
+                <label>Show items in Mobile</label>
+                <visible>1</visible>
+                <value>1</value>
+                <type>text</type>
+                <description><![CDATA[(Use Layout Products Scroller. Number items between 320px and 0px;)]]></description>
+            </show_items_mobile>
+            <is_column>
+                <label>Columns</label>
+                <visible>1</visible>
+                <value>5</value>
+                <type>text</type>
+                <description><![CDATA[(Use Layout Products List)]]></description>
+            </is_column>
+        </parameters>
+    </widgetproductslist_products>
+</widgets>

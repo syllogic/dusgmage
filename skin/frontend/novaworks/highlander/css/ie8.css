@@ -1,0 +1,283 @@
+
+.visible-xs {
+   display:none !important;
+  }
+.columns-layout{
+   
+}
+
+.col-md-1 {
+    width: 8.33333%;
+}
+.col-md- {
+    width: 16.33333%;
+}
+.col-md-5 {
+    width: 41.6667%;
+	float:left;
+}
+.mobile-collapsible .block-content {
+    display: block !important;
+}
+
+.columns-layout .products-grid .col-md-3 {
+    width: 23.210%;
+}
+.product-view .product-img-box .product-image {
+    margin: 0px 0px 13px;
+    min-height: 600px;
+	display: block !important;
+	
+}
+.product-view .product-img-box .more-views {
+    margin: 0px;
+    position: relative;
+}
+.product-view .product-img-box .product-image  img{
+	width: 90%; 
+	
+}
+
+.margin-image img {
+    border: 0px none;
+    max-width: 90%;
+    vertical-align: top;
+	
+	
+}
+
+.cloud-zoom img{
+	width: auto !important;;
+	min-height: 600px;
+}
+.product-view .product-image {
+    position: relative;
+	display: block !important;
+}
+.grid-banner-inner{
+ 
+}
+.ma-a-lighbox{
+	 display: block !important;
+}
+.columns-layout .col-md-8 .list-3col-3 .col-md-4 {
+    width: 30.333% !important;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0px none;
+}
+#wrap{
+    top: 0px;
+    z-index: 995;
+    position: relative;
+}
+.owl-carousel .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+	display:none;
+	
+}
+.owl-theme .owl-controlls {
+    margin-top: 10px;
+    text-align: center;
+}
+.more-views .owl-controlls .owl-buttons {
+    height: 0px;
+    left: 0px;
+    margin-top: -13px;
+    position: absolute;
+    top: 50%;
+}
+.more-views .owl-controlls .owl-buttons .owl-prev {
+    left: -205px;
+    margin: 0px;
+    position: relative;
+}
+.more-views .owl-controlls .owl-buttons .owl-next {
+    margin: 0px;
+    position: relative;
+    right: -220px;
+}
+
+.owl-controlls {
+    
+	display: none;
+}
+.owl-carousel {
+  
+    position: relative;
+    width: 100%;
+}
+.owl-item div {
+    text-align: center;
+}
+
+.col-md-7 {
+    width: 58.3333%;
+	float:left;
+}
+.columns-layout .product-view .product-essential .col-md-7 .col-md-8 {
+  width: 64% !important;
+  float:left;
+}
+.col-md-2 {
+    width: 25%;
+}
+.col-md-3 {
+    width: 25%;
+	float:left;
+	display: block;
+}
+.col-md-4 {
+    width: 33.3333%;
+	float:left;
+}
+.mobile-coll-arrow{
+	display: none;
+}
+.col-md-8 {
+    width: 66.6667%;
+	float:left;
+}
+.col-md-5 {
+    width: 41.6667%;
+	float:left;
+}
+.col-md-12 {
+    width: 100%;
+}
+.hidden-xs {
+    display: block !important;
+}
+.header-container-3 .nova-main-menu {
+    max-width: 813px;
+    margin-left: 50px;
+}
+.nova-navigation #nova-nav {
+    display: inline-block;
+    height: 50px;
+    margin: 0px auto;
+    padding: 0px;
+    z-index: 997;
+}
+#nova-nav li {
+    float: left;
+    height: 50px;
+    padding: 0px;
+    text-align: left;
+}
+.header-container-3 #nova-nav a {
+    padding: 9px 10px;
+}
+#nova-nav a, #megamenu a, #nova-nav li.level0 a {
+    color: #363636;
+    position: relative;
+}
+#nova-nav li.level0 {
+    float: left;
+    padding: 0px;
+    text-align: left;
+}
+#nova-nav span {
+    cursor: pointer;
+    display: block;
+    white-space: nowrap;
+} 
+.collapsible .mobile-coll-arrow {
+    display: none;
+}
+.footer-info-container .collapsible .mobile-coll-arrow {
+	display: none;
+}
+.col-md-3 .nova-mg-pd{
+	 width: 25%;
+}
+
+.collapsible .mobile-coll-arrow{
+	display:none;
+}
+.top_menu{
+	width:75%;
+}
+.navbar-toggle {
+    display: none;
+}
+.footer-menu-box {
+    float: left;
+    width: 325px;
+}
+.mobile-collapsible .block-content {
+    display: block !important;
+}
+.footer-info-container .footer-info .nova-footer-info .nova-footer {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+.col-md-5 .nova-footer .nova-footer-box2 .collapsible .mobile-collapsible{
+	 display: block;
+}
+.col-md-3 .nova-footer .nova-footer-box1 .collapsible .mobile-collapsible{
+	 display: block;
+}
+.col-md-3 .nova-footer .nova-footer-box3 .collapsible .mobile-collapsible{
+	 display: block;
+}
+
+.grid-banner-inner .col-md-4 {
+    width: 33.3333%;
+	float:left;
+}
+.col-md-9{
+    width: 75%;
+	float:left;
+}
+.navbar {
+ display:none !important; 
+}
+.visible-xs{
+ display:none !important;
+}
+.navbar .navbar-inverse{
+ display:none !important;
+}
+
+.container .nav-top{
+ display:none !important;
+}
+
+.navbar-header{
+ display:none !important;
+}
+.navbar .visible-xs{
+ display:none !important;
+}
+.col-md-12 .nova-mg-pd .navbar .visible-xs{
+ display:none !important;
+}
+
+
+
+.bs-navbar-collapse .collapse{
+ display:none !important;
+}
+.nova-navigation .hidden-xs{
+ display:block !important;
+}
+.nova-main-menu .container{
+ display:block !important;
+}
+
+
+#nova-nav{
+ display:block !important;
+}
+
+.megamenu{
+ display:block !important;
+}
+ 
