@@ -2,41 +2,47 @@ RLimitMem MAX MAX
 
 <IfModule mod_rewrite.c>
 
-############################################
-## enable rewrites
+	############################################
+	## enable rewrites
 
-    Options +FollowSymLinks
-    RewriteEngine on
- 
-############################################
-## you can put here your magento root folder
-## path relative to web root
+		Options +FollowSymLinks
+		RewriteEngine on
+	 
+	############################################
+	## you can put here your magento root folder
+	## path relative to web root
 
-    RewriteBase /
+		RewriteBase /
 
-############################################
-## workaround for HTTP authorization
-## in CGI environment
+	############################################
+	## workaround for HTTP authorization
+	## in CGI environment
 
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-   
+		RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+	   
 
-############################################
-## always send 404 on missing files in these folders
+	############################################
+	## always send 404 on missing files in these folders
 
-    RewriteCond %{REQUEST_URI} !^/(media|skin|js)/
+		RewriteCond %{REQUEST_URI} !^/(media|skin|js)/
 
-############################################
-## never rewrite for existing files, directories and links
+	############################################
+	## never rewrite for existing files, directories and links
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-l
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteCond %{REQUEST_FILENAME} !-l
 
-############################################
-## rewrite everything else to index.php
+	############################################
+	## rewrite everything else to index.php
 
-    RewriteRule .* index.php [L]
-   
+		RewriteRule .* index.php [L]
 
 </IfModule>
+
+<ifmodule mod_expires.c>
+	<Filesmatch "\.(jpg|jpeg|png|gif|js|css|swf|ico|woff|mp3)$">
+		ExpiresActive on
+		ExpiresDefault "access plus 1 year"
+	</Filesmatch>
+</ifmodule>
